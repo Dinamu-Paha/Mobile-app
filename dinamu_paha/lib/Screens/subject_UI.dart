@@ -15,7 +15,7 @@ class _Subject_UIState extends State<Subject_UI> {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Dinamu paha - Sinhala',),
+            title: Text('Dinamu paha - Maths',),
             leading: IconButton(
               icon: Icon(Icons.arrow_back,),
               onPressed: (){},
