@@ -1,7 +1,9 @@
+import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:flutter/material.dart';
 import 'Screens/subject_UI.dart';
 
 import 'Screens/home.dart';
+import 'Screens/studentDash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,4 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
