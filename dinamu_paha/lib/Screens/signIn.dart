@@ -36,7 +36,7 @@ class _SignInPageState extends State<SignInPage> {
                   Container(
                     height: 680,
                     decoration: BoxDecoration(
-                      color: Color(0x00DDFFF3).withOpacity(0.6),
+                      color: Color(0x00DDFFF3).withOpacity(0.75),
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(100),bottomRight: Radius.circular(100),)
                     ),
                     child: Padding(
