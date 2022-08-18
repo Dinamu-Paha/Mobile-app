@@ -20,9 +20,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Dinamu paha',
       theme: ThemeData(
+        fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: SubTopic_UI(),
+
+      home: HomePage(),
     );
   }
 }
