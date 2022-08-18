@@ -283,7 +283,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 enabledBorder: const UnderlineInputBorder(
                                   borderSide: const BorderSide(color: Colors.black),
                                 ) ,
-                                icon: Icon(Icons.area_chart ,size: 20,color: Colors.black,),
+                                icon: Icon(Icons.location_on_outlined ,size: 20,color: Colors.black,),
                               ),
                             ),
                           ),
@@ -327,7 +327,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               color: Colors.orange,
                             ),
                             child: Center(
-                                child: Text('Sign Up',style: TextStyle(fontSize: 15,color: Colors.black,),)),
+                                child: Text('Sign Up',style: TextStyle(fontSize: 20,color: Colors.black,),)),
                           ),
                           SizedBox(height: 20,),
                           Container(
