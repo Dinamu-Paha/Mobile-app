@@ -1,6 +1,7 @@
 import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:flutter/material.dart';
 import 'Screens/subject_UI.dart';
+import 'Screens/Sub_topic_UI.dart';
 
 import 'Screens/home.dart';
 import 'Screens/studentDash.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Subject_UI(),
+      home: SubTopic_UI(),
     );
   }
 }
