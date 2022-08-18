@@ -1,3 +1,4 @@
+import 'package:dinamu_paha/Component/colors.dart';
 import 'package:dinamu_paha/Screens/singUp.dart';
 import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class _SignInPageState extends State<SignInPage> {
                   Container(
                     height: 680,
                     decoration: BoxDecoration(
-                      color: Color(0x00DDFFF3).withOpacity(0.75),
+                      color: AppColor.formBgColor.withOpacity(0.75),
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(100),bottomRight: Radius.circular(100),)
                     ),
                     child: Padding(
