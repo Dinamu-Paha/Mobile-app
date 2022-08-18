@@ -14,7 +14,7 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.deepPurple,
-            title: Text('දිනමු පහ - ශිෂ්‍යත්ව අත්වැල',),
+            title: Text('දිනමු පහ - ගණිතය',),
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: (){},

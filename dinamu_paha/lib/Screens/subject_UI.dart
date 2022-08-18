@@ -16,7 +16,7 @@ class _Subject_UIState extends State<Subject_UI> {
           backgroundColor: Colors.deepPurple,
           title: Text('දිනමු පහ - ශිෂ්‍යත්ව අත්වැල',),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(Icons.menu),
             onPressed: (){},
           ),
         ),
@@ -33,7 +33,7 @@ class _Subject_UIState extends State<Subject_UI> {
             scrollDirection: Axis.vertical,
             child: Container(
               width: MediaQuery.of(context).size.width-60,
-              padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
+              padding: EdgeInsets.fromLTRB(0, 60, 0, 80),
               height: MediaQuery.of(context).size.height,
               child: Center(
                 child: ListView(
