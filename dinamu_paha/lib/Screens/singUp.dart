@@ -2,6 +2,8 @@ import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 
+import '../Component/colors.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -38,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        color: Color(0x00DDFFF3).withOpacity(0.75),
+                        color: AppColor.formBgColor.withOpacity(0.75),
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(100),bottomRight: Radius.circular(100),)
                     ),
                     child: Padding(
