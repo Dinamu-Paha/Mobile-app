@@ -1,4 +1,5 @@
 import 'package:dinamu_paha/Screens/singUp.dart';
+import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {
@@ -61,11 +62,11 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                           Container(
-                            child: Text('Login',style: TextStyle(fontSize: 45, fontWeight: FontWeight.w900),),
+                            child: Text('Login',style: TextStyle(fontSize: 48, fontWeight: FontWeight.w900),),
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Email',style: TextStyle(fontSize: 15),),
+                            child: Text('Email',style: TextStyle(fontSize: 19),),
                           ),
                           Container(
                             height: 33,
@@ -78,7 +79,7 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Password',style: TextStyle(fontSize: 15),),
+                            child: Text('Password',style: TextStyle(fontSize: 19),),
                           ),
                           Container(
                             height: 33,
@@ -117,15 +118,24 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                           SizedBox(height: 20,),
-                          Container(
-                            width: MediaQuery.of(context).size.width-60,
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.orange,
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) => Subject_UI(),
+                                  ));
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width-60,
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.orange,
+                              ),
+                              child: Center(
+                                  child: Text('Sign In',style: TextStyle(fontSize: 15),)),
                             ),
-                            child: Center(
-                                child: Text('Sign In',style: TextStyle(fontSize: 15),)),
                           ),
                           SizedBox(height: 30,),
                           Container(
@@ -185,11 +195,11 @@ class _SignInPageState extends State<SignInPage> {
                                 ),
                                 GestureDetector(
                                   onTap: (){
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //       builder: (BuildContext context) => SignUpPage(),
-                                    //     ));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) => SignUpPage(),
+                                        ));
                                   },
                                   child: Container(
                                     child: Text(' Register Now',style: TextStyle(fontSize: 15, color: Colors.blue),),
