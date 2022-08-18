@@ -1,3 +1,4 @@
+import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 
@@ -61,12 +62,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           Container(
                             width: MediaQuery.of(context).size.width-60,
                             child: Text('Your Details',style: TextStyle(
-                                fontSize: 25,color: Colors.black, fontWeight: FontWeight.w600)),
+                                fontSize: 28,color: Colors.black, fontWeight: FontWeight.w600)),
                           ),
 
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('First name',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('First name',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -83,7 +84,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Last name',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('Last name',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -100,7 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Date of Birth',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('Date of Birth',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 40,
@@ -127,7 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('E-mail',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('E-mail',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -144,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Mobile No.',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('Mobile No.',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -161,7 +162,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Home District',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('Home District',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -178,7 +179,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Devisional Secretary',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('Devisional Secretary',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -195,7 +196,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Examination Year',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('Examination Year',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -212,7 +213,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Password',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('Password',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -229,7 +230,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Confirm Password',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('Confirm Password',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -248,11 +249,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           Container(
                             width: MediaQuery.of(context).size.width-60,
                             child: Text('School Details',style: TextStyle(
-                                fontSize: 25,color: Colors.black, fontWeight: FontWeight.w600)),
+                                fontSize: 28,color: Colors.black, fontWeight: FontWeight.w600)),
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('School',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('School',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -269,7 +270,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('District of School',style: TextStyle(fontSize: 15,color: Colors.black,),),
+                            child: Text('District of School',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
                             height: 33,
@@ -326,8 +327,32 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: Center(
                                 child: Text('Sign Up',style: TextStyle(fontSize: 15,color: Colors.black,),)),
                           ),
+                          SizedBox(height: 20,),
+                          Container(
+                            width: MediaQuery.of(context).size.width-60,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: Text('Already have an account?',style: TextStyle(fontSize: 15),),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) => SignInPage(),
+                                        ));
+                                  },
+                                  child: Container(
+                                    child: Text(' Login Now',style: TextStyle(fontSize: 15, color: Colors.blue),),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           SizedBox(
-                            height: 50,
+                            height: 10,
                           )
                         ],
                       ),
