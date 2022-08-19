@@ -1,4 +1,5 @@
 import 'package:dinamu_paha/Component/colors.dart';
+import 'package:dinamu_paha/Screens/fogotPass.dart';
 import 'package:dinamu_paha/Screens/singUp.dart';
 import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
@@ -112,8 +113,17 @@ class _SignInPageState extends State<SignInPage> {
                                 Expanded(
                                   child: Container(),
                                 ),
-                                Container(
-                                  child: Text('Forgot Password?',style: TextStyle(fontSize: 15),),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) => FogotPasswordPage(),
+                                        ));
+                                  },
+                                  child: Container(
+                                    child: Text('Forgot Password?',style: TextStyle(fontSize: 15,color: Colors.blue),),
+                                  ),
                                 ),
                               ],
                             ),
@@ -135,7 +145,7 @@ class _SignInPageState extends State<SignInPage> {
                                 color: Colors.orange,
                               ),
                               child: Center(
-                                  child: Text('Sign In',style: TextStyle(fontSize: 15),)),
+                                  child: Text('Sign In',style: TextStyle(fontSize: 20),)),
                             ),
                           ),
                           SizedBox(height: 30,),
