@@ -36,8 +36,8 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                 scrollDirection: Axis.vertical,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.fromLTRB(0, 30, 0, 80),
-                  height: MediaQuery.of(context).size.height-256,
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  height: MediaQuery.of(context).size.height-319,
                   decoration: BoxDecoration(
                     color: Colors.cyanAccent.withOpacity(0.3),
                   ),
