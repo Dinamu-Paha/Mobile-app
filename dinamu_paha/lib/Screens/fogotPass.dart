@@ -78,7 +78,7 @@ class _FogotPasswordPageState extends State<FogotPasswordPage> {
                               height: 45,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.orange,
+                                color: AppColor.btnColor,
                               ),
                               child: Center(
                                   child: Text('Send Password Reset code',style: TextStyle(fontSize: 20),)),

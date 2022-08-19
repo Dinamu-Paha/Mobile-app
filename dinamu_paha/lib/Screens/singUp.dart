@@ -324,7 +324,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 45,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.orange,
+                              color: AppColor.btnColor,
                             ),
                             child: Center(
                                 child: Text('Sign Up',style: TextStyle(fontSize: 20,color: Colors.black,),)),
