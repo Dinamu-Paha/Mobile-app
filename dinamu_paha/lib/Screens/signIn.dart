@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:dinamu_paha/Component/colors.dart';
 import 'package:dinamu_paha/Screens/fogotPass.dart';
 import 'package:dinamu_paha/Screens/singUp.dart';
 import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../Api/User.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -12,6 +17,21 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  User user = new User("", "");
+
+  TextEditingController _email = TextEditingController();
+
+  Future save() async{
+    final res = await http.post(
+      Uri.parse('http://192.168.56.1:8080/user/login'),
+        headers: {'Content-Type':'application/json'},
+      body: json.encode({'email':user.email, 'password':user.password})
+    );
+
+    print(json.decode(res.body)['name']);
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +94,10 @@ class _SignInPageState extends State<SignInPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: user.email),
+                              onChanged: (val){
+                                user.email = val;
+                              },
                               decoration: InputDecoration(
                                 icon: Icon(Icons.alternate_email_outlined,size: 20,),
                               ),
@@ -87,6 +111,10 @@ class _SignInPageState extends State<SignInPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text:user.password),
+                              onChanged: (val){
+                                user.password = val;
+                              },
                               decoration: InputDecoration(
                                 icon: Icon(Icons.lock_open,size: 20,),
                               ),
@@ -131,11 +159,12 @@ class _SignInPageState extends State<SignInPage> {
                           SizedBox(height: 20,),
                           GestureDetector(
                             onTap: (){
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) => Subject_UI(),
-                                  ));
+                              save();
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (BuildContext context) => Subject_UI(),
+                              //     ));
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width-60,
