@@ -17,6 +17,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+<<<<<<< HEAD
   User user = new User("", "");
 
   TextEditingController _email = TextEditingController();
@@ -31,6 +32,17 @@ class _SignInPageState extends State<SignInPage> {
     print(json.decode(res.body)['name']);
 
 
+=======
+  User user = User("", "");
+  Future save() async{
+
+    // print("dineth");
+    final res = await http.post( Uri.parse('http://192.168.138.35:8080/user/login'),
+    headers:{'Content-Type':'application/json'},
+    body:json.encode({'email':user.email, 'password':user.password})
+    );
+    print(res.body);
+>>>>>>> main
   }
   @override
   Widget build(BuildContext context) {
