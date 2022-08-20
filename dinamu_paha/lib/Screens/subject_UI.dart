@@ -1,3 +1,5 @@
+import 'package:dinamu_paha/Screens/Sub_topic_UI.dart';
+import 'package:dinamu_paha/Screens/studentDash.dart';
 import 'package:flutter/material.dart';
 
 class Subject_UI extends StatefulWidget {
@@ -12,13 +14,11 @@ class _Subject_UIState extends State<Subject_UI> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: StudentDashPage(),
         appBar: AppBar(
           backgroundColor: Colors.deepPurple,
           title: Text('දිනමු පහ - ශිෂ්‍යත්ව අත්වැල',),
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: (){},
-          ),
+
         ),
         body: Container(
           width: MediaQuery.of(context).size.width,
@@ -75,6 +75,13 @@ class _Subject_UIState extends State<Subject_UI> {
                       ),
                     ),
                     GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => SubTopic_UI(),
+                            ));
+                      },
                       child: Container(
                         width: 80,
                         height: 70,

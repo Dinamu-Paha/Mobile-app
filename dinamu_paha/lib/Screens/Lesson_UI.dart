@@ -1,3 +1,4 @@
+import 'package:dinamu_paha/Screens/Sub_topic_UI.dart';
 import 'package:flutter/material.dart';
 
 class lesson_UI extends StatefulWidget {
@@ -19,7 +20,13 @@ class _lesson_UIState extends State<lesson_UI> {
               title: Text('දිනමු පහ - අප අවට සත්තු',),
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => SubTopic_UI(),
+                      ));
+                },
               ),
               bottom: TabBar(
                 tabs: [

@@ -1,5 +1,7 @@
 import 'package:dinamu_paha/Component/barChartGraph.dart';
 import 'package:dinamu_paha/Component/colors.dart';
+import 'package:dinamu_paha/Screens/studentDash.dart';
+import 'package:dinamu_paha/Screens/studentEditProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -56,13 +58,16 @@ class _StudentProfileState extends State<StudentProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: StudentDashPage(),
       appBar: AppBar(
         backgroundColor: AppColor.appBColor,
         title: Text('Profile',style: TextStyle(fontSize: 25),),
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: (){},
-        ),
+        // leading: IconButton(
+        //   icon: Icon(Icons.menu),
+        //   onPressed: (){
+        //
+        //   },
+        // ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -110,14 +115,23 @@ class _StudentProfileState extends State<StudentProfile> {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  height: 50,
-                  width: 150,
-                  decoration: BoxDecoration(
-                      color: AppColor.btnColor,
-                      borderRadius: BorderRadius.circular(30)
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => StudentEditProfile(),
+                        ));
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 150,
+                    decoration: BoxDecoration(
+                        color: AppColor.btnColor,
+                        borderRadius: BorderRadius.circular(30)
+                    ),
+                    child: Center(child: Text("Edit Profile")),
                   ),
-                  child: Center(child: Text("Edit Profile")),
                 ),
                 SizedBox(
                   height: 20,
