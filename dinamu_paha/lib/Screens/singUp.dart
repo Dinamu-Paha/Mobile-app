@@ -53,7 +53,17 @@ class _SignUpPageState extends State<SignUpPage> {
     print(res.body);
 
   }
+  var _thisYear = DateTime.now().year;
 
+  //dropdown of district and divisional sectors
+  List<DropdownMenuItem<String>> get dropdownYear{
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("${_thisYear}"),value: "${_thisYear}"),
+      DropdownMenuItem(child: Text("${_thisYear+1}"),value: "${_thisYear+1}"),
+      DropdownMenuItem(child: Text("${_thisYear+2}"),value: "${_thisYear+2}"),
+    ];
+    return menuItems;
+  }
   List<DropdownMenuItem<String>> get dropdownDistrict{
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(child: Text("Colombo"),value: "Colombo"),
@@ -72,7 +82,13 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   String selectedDistrict = "Colombo";
+  String selectedSchoolDistrict = "Colombo";
   String selectedDivision = "Colombo";
+  String selectedYear = "2022";
+
+
+//password show
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +153,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              keyboardType: TextInputType.name,
                               controller: TextEditingController(text: firstName),
                               onChanged: (val){
                                 this.firstName = val;
@@ -158,6 +175,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              keyboardType: TextInputType.name,
                               controller: TextEditingController(text: lastName),
                               onChanged: (val){
                                 this.lastName = val;
@@ -211,6 +229,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 this.email = val;
                               },
                               style: TextStyle(color: Colors.black),
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
                                   borderSide: const BorderSide(color: Colors.black),
@@ -224,9 +243,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: Text('Mobile No.',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
                           Container(
-                            height: 33,
+                            height: 55,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              maxLength: 10,
+                              keyboardType: TextInputType.phone,
                               controller: TextEditingController(text: mobileNumber),
                               onChanged: (val){
                                 this.mobileNumber = val;
@@ -240,7 +261,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 25,),
+                          // SizedBox(height: 10,),
                           Container(
                             child: Text('Home District',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
@@ -257,8 +278,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                   isExpanded: true,
                                     value: selectedDistrict,
                                     items: dropdownDistrict,
-                                  onChanged: (String? value) {
-                                    selectedDistrict = value! ;
+                                  onChanged: (String? val) {
+                                    setState(() {
+                                      selectedDistrict = val! ;
+                                    });
+
                                   },
                                 ),
                               ),
@@ -282,7 +306,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             value: selectedDivision,
                             items: dropdownDivision,
                             onChanged: (String? value) {
-                              selectedDivision = value! ;
+                              setState(() {
+                                selectedDivision = value! ;
+                              });
                             },
                           ),
                         ),
@@ -292,22 +318,27 @@ class _SignUpPageState extends State<SignUpPage> {
                           Container(
                             child: Text('Examination Year',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
-                          Container(
-                            height: 33,
-                            width: MediaQuery.of(context).size.width-60,
-                            child: TextField(
-                              controller: TextEditingController(text: examinationYear),
-                              onChanged: (val){
-                                this.examinationYear = val;
-                              },
-                              style: TextStyle(color: Colors.black),
-                              decoration: InputDecoration(
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: const BorderSide(color: Colors.black),
-                                ) ,
-                                icon: Icon(Icons.date_range_outlined,size: 20,color: Colors.black,),
+                          Row(
+                            children: [
+                              Icon(Icons.home_outlined),
+                              SizedBox(
+                                width: 10,
                               ),
-                            ),
+                              Container(
+                                height: 33,
+                                width: MediaQuery.of(context).size.width-90,
+                                child: DropdownButton(
+                                  isExpanded: true,
+                                  value: selectedYear,
+                                  items: dropdownYear,
+                                  onChanged: (String? val1) {
+                                    setState(() {
+                                      selectedYear = val1! ;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 25,),
                           Container(
@@ -323,11 +354,26 @@ class _SignUpPageState extends State<SignUpPage> {
                               },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                  icon: _obscureText
+                                      ? Icon(
+                                    Icons.visibility_off,
+                                    color: AppColor.appBColor,
+                                  )
+                                      : Icon(
+                                    Icons.visibility,
+                                    color: AppColor.blckColor,
+                                  ),
+                                  onPressed: () {
+                                    setState(() => _obscureText = !_obscureText);
+                                  },
+                                ),
                                 enabledBorder: const UnderlineInputBorder(
                                   borderSide: const BorderSide(color: Colors.black),
                                 ) ,
                                 icon: Icon(Icons.lock_open,size: 20,color: Colors.black,),
                               ),
+                              obscureText: _obscureText,
                             ),
                           ),
                           SizedBox(height: 25,),
@@ -344,11 +390,26 @@ class _SignUpPageState extends State<SignUpPage> {
                               },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                  icon: _obscureText
+                                      ? Icon(
+                                    Icons.visibility_off,
+                                    color: AppColor.appBColor,
+                                  )
+                                      : Icon(
+                                    Icons.visibility,
+                                    color: AppColor.blckColor,
+                                  ),
+                                  onPressed: () {
+                                    setState(() => _obscureText = !_obscureText);
+                                  },
+                                ),
                                 enabledBorder: const UnderlineInputBorder(
                                   borderSide: const BorderSide(color: Colors.black),
                                 ) ,
                                 icon: Icon(Icons.lock_person_outlined,size: 20,color: Colors.black,),
                               ),
+                              obscureText: _obscureText,
                             ),
                           ),
                           SizedBox(height: 20,),
@@ -382,22 +443,28 @@ class _SignUpPageState extends State<SignUpPage> {
                           Container(
                             child: Text('District of School',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
-                          Container(
-                            height: 33,
-                            width: MediaQuery.of(context).size.width-60,
-                            child: TextField(
-                              controller: TextEditingController(text: districtOfSchool),
-                              onChanged: (val){
-                                this.districtOfSchool = val;
-                              },
-                              style: TextStyle(color: Colors.black),
-                              decoration: InputDecoration(
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: const BorderSide(color: Colors.black),
-                                ) ,
-                                icon: Icon(Icons.location_on_outlined ,size: 20,color: Colors.black,),
+                          Row(
+                            children: [
+                              Icon(Icons.home_outlined),
+                              SizedBox(
+                                width: 10,
                               ),
-                            ),
+                              Container(
+                                height: 33,
+                                width: MediaQuery.of(context).size.width-90,
+                                child: DropdownButton(
+                                  isExpanded: true,
+                                  value: selectedSchoolDistrict,
+                                  items: dropdownDistrict,
+                                  onChanged: (String? val) {
+                                    setState(() {
+                                      selectedSchoolDistrict = val! ;
+                                    });
+
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 20,),
                           Container(
