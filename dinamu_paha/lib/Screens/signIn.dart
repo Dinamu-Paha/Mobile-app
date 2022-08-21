@@ -7,7 +7,6 @@ import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../Api/User.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
