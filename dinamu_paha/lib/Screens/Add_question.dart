@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Add_Question extends StatefulWidget {
   const Add_Question({Key? key}) : super(key: key);
@@ -10,6 +11,12 @@ class Add_Question extends StatefulWidget {
 }
 
 class _Add_QuestionState extends State<Add_Question> {
+
+  Future addQuestion() async{
+    final storage = new FlutterSecureStorage();
+    print(storage.read(jwt: jwt));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -164,12 +171,17 @@ class _Add_QuestionState extends State<Add_Question> {
                     style: TextStyle(fontFamily: 'Poppins', fontSize: 18),
                   ),
                   SizedBox(height: 50,),
-                  Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width-60,
-                    decoration: BoxDecoration(color: Colors.blue),
-                    child: Center(
-                        child: Text('Add Question', style: TextStyle(color: Colors.white, fontFamily: 'Poppins', fontSize: 25, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),)
+                  GestureDetector(
+                    onTap: (){
+                      addQuestion();
+                    },
+                    child: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width-60,
+                      decoration: BoxDecoration(color: Colors.blue),
+                      child: Center(
+                          child: Text('Add Question', style: TextStyle(color: Colors.white, fontFamily: 'Poppins', fontSize: 25, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),)
+                      ),
                     ),
                   ),
                   SizedBox(height: 40,),

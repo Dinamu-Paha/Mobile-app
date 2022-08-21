@@ -5,7 +5,10 @@ import 'package:dinamu_paha/Screens/fogotPass.dart';
 import 'package:dinamu_paha/Screens/singUp.dart';
 import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+
+import 'Add_question.dart';
 
 
 class SignInPage extends StatefulWidget {
@@ -19,12 +22,17 @@ class _SignInPageState extends State<SignInPage> {
 
   String email = "";
   String password = "";
+  final storage = new FlutterSecureStorage();
+
+
   Future save() async{
     final res = await http.post( Uri.parse('http://192.168.56.1:8080/user/login'),
     headers:{'Content-Type':'application/json'},
     body:json.encode({'email':email, 'password':password})
+
     );
-    print(res.body);
+    print(jsonDecode(res.body)['token']);
+    await storage.write(key:'jwt', value: jsonDecode(res.body)['token']);
   }
   @override
   Widget build(BuildContext context) {
@@ -157,7 +165,7 @@ class _SignInPageState extends State<SignInPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (BuildContext context) => Subject_UI(),
+                                    builder: (BuildContext context) => Add_Question(),
                                   ));
                             },
                             child: Container(
