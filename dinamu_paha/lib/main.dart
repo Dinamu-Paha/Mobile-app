@@ -1,11 +1,11 @@
+
 import 'package:dinamu_paha/Screens/Add_question.dart';
-import 'package:dinamu_paha/Screens/Admin_home.dart';
-import 'package:dinamu_paha/Screens/Lesson_UI.dart';
-import 'package:dinamu_paha/Screens/Quizzes_admin.dart';
-import 'package:dinamu_paha/Screens/Sub_topic_UI.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
-import 'package:dinamu_paha/Screens/singUp.dart';
-import 'package:dinamu_paha/Screens/subject_UI.dart';
+import 'package:flutter/material.dart';
+import 'Screens/singUp.dart';
+import 'Screens/subject_UI.dart';
+import 'Screens/Sub_topic_UI.dart';
+import 'Screens/Quizzes_admin.dart';
 import 'package:flutter/material.dart';
 import 'Screens/home.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -28,8 +28,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-
-      home:lesson_UI(),
+<<<<<<< HEAD
+      home: Add_Question(),
+=======
+      home: HomePage(),
+>>>>>>> af2b2febadee73157536358e5a894bd928136ae3
     );
   }
 }
