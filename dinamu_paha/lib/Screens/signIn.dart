@@ -155,11 +155,11 @@ class _SignInPageState extends State<SignInPage> {
                           GestureDetector(
                             onTap: (){
                               save();
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (BuildContext context) => Subject_UI(),
-                              //     ));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) => Subject_UI(),
+                                  ));
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width-60,

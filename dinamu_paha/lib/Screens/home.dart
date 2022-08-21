@@ -1,6 +1,7 @@
 import 'package:dinamu_paha/Screens/landing.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:dinamu_paha/Screens/studentDash.dart';
+import 'package:dinamu_paha/Screens/studentEditProfile.dart';
 import 'package:dinamu_paha/Screens/studentProfile.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: StudentProfile());
+        child: LandingPage());
   }
 }

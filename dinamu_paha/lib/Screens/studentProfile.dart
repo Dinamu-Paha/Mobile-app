@@ -1,5 +1,8 @@
 import 'package:dinamu_paha/Component/barChartGraph.dart';
 import 'package:dinamu_paha/Component/colors.dart';
+import 'package:dinamu_paha/Screens/studentDash.dart';
+import 'package:dinamu_paha/Screens/studentEditProfile.dart';
+import 'package:dinamu_paha/Screens/studentSubjectStat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -56,13 +59,16 @@ class _StudentProfileState extends State<StudentProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: StudentDashPage(),
       appBar: AppBar(
         backgroundColor: AppColor.appBColor,
         title: Text('Profile',style: TextStyle(fontSize: 25),),
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: (){},
-        ),
+        // leading: IconButton(
+        //   icon: Icon(Icons.menu),
+        //   onPressed: (){
+        //
+        //   },
+        // ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -110,14 +116,23 @@ class _StudentProfileState extends State<StudentProfile> {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  height: 50,
-                  width: 150,
-                  decoration: BoxDecoration(
-                      color: AppColor.btnColor,
-                      borderRadius: BorderRadius.circular(30)
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => StudentEditProfile(),
+                        ));
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 150,
+                    decoration: BoxDecoration(
+                        color: AppColor.btnColor,
+                        borderRadius: BorderRadius.circular(30)
+                    ),
+                    child: Center(child: Text("Edit Profile")),
                   ),
-                  child: Center(child: Text("Edit Profile")),
                 ),
                 SizedBox(
                   height: 20,
@@ -150,62 +165,107 @@ class _StudentProfileState extends State<StudentProfile> {
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width-60,
-                        decoration: BoxDecoration(
-                            color: AppColor.btnColor,
-                            borderRadius: BorderRadius.circular(30)
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => SubjectStats(title: "සිංහල"),
+                              ));
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width-60,
+                          decoration: BoxDecoration(
+                              color: AppColor.btnColor,
+                              borderRadius: BorderRadius.circular(30)
+                          ),
+                          child: Center(child: Text("සිංහල", style: TextStyle(fontSize: 22),)),
                         ),
-                        child: Center(child: Text("සිංහල", style: TextStyle(fontSize: 22),)),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width-60,
-                        decoration: BoxDecoration(
-                            color: AppColor.btnColor,
-                            borderRadius: BorderRadius.circular(30)
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => SubjectStats(title: "ගණිතය"),
+                              ));
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width-60,
+                          decoration: BoxDecoration(
+                              color: AppColor.btnColor,
+                              borderRadius: BorderRadius.circular(30)
+                          ),
+                          child: Center(child: Text("ගණිතය", style: TextStyle(fontSize: 22),)),
                         ),
-                        child: Center(child: Text("ගණිතය", style: TextStyle(fontSize: 22),)),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width-60,
-                        decoration: BoxDecoration(
-                            color: AppColor.btnColor,
-                            borderRadius: BorderRadius.circular(30)
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => SubjectStats(title: "බුද්ධ ධර්මය"),
+                              ));
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width-60,
+                          decoration: BoxDecoration(
+                              color: AppColor.btnColor,
+                              borderRadius: BorderRadius.circular(30)
+                          ),
+                          child: Center(child: Text("බුද්ධ ධර්මය", style: TextStyle(fontSize: 22),)),
                         ),
-                        child: Center(child: Text("බුද්ධ ධර්මය", style: TextStyle(fontSize: 22),)),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width-60,
-                        decoration: BoxDecoration(
-                            color: AppColor.btnColor,
-                            borderRadius: BorderRadius.circular(30)
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => SubjectStats(title: "ඉංග්‍රීසි"),
+                              ));
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width-60,
+                          decoration: BoxDecoration(
+                              color: AppColor.btnColor,
+                              borderRadius: BorderRadius.circular(30)
+                          ),
+                          child: Center(child: Text("ඉංග්‍රීසි", style: TextStyle(fontSize: 22),)),
                         ),
-                        child: Center(child: Text("ඉංග්‍රීසි", style: TextStyle(fontSize: 22),)),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width-60,
-                        decoration: BoxDecoration(
-                            color: AppColor.btnColor,
-                            borderRadius: BorderRadius.circular(30)
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => SubjectStats(title: "පරිසරය"),
+                              ));
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width-60,
+                          decoration: BoxDecoration(
+                              color: AppColor.btnColor,
+                              borderRadius: BorderRadius.circular(30)
+                          ),
+                          child: Center(child: Text("පරිසරය", style: TextStyle(fontSize: 22),)),
                         ),
-                        child: Center(child: Text("පරිසරය", style: TextStyle(fontSize: 22),)),
                       ),
                     ],
                   ),

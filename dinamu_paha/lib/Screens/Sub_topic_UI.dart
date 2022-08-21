@@ -1,4 +1,7 @@
+import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
+
+import 'Lesson_UI.dart';
 
 class SubTopic_UI extends StatefulWidget {
   const SubTopic_UI({Key? key}) : super(key: key);
@@ -17,7 +20,13 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
             title: Text('දිනමු පහ - පරිසරය',),
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => Subject_UI(),
+                    ));
+              },
             ),
           ),
           body: Column(
@@ -36,8 +45,13 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                 scrollDirection: Axis.vertical,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
+<<<<<<< HEAD
                   padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
                   height: MediaQuery.of(context).size.height-319,
+=======
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                  height: MediaQuery.of(context).size.height-290,
+>>>>>>> 028817ae113b7d35fef064dee156c417b541c275
                   decoration: BoxDecoration(
                     color: Colors.cyanAccent.withOpacity(0.3),
                   ),
@@ -45,6 +59,13 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                     child: ListView(
                       children: [
                         GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => lesson_UI(),
+                                ));
+                          },
                           child: Container(
                             width: 80,
                             height: 50,
