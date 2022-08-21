@@ -54,6 +54,26 @@ class _SignUpPageState extends State<SignUpPage> {
 
   }
 
+  List<DropdownMenuItem<String>> get dropdownDistrict{
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("Colombo"),value: "Colombo"),
+      DropdownMenuItem(child: Text("Gampaha"),value: "Gampaha"),
+      DropdownMenuItem(child: Text("Kalutara"),value: "Kalutara"),
+    ];
+    return menuItems;
+  }
+  List<DropdownMenuItem<String>> get dropdownDivision{
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("Colombo"),value: "Colombo"),
+      DropdownMenuItem(child: Text("Dehiwala"),value: "Dehiwala"),
+      DropdownMenuItem(child: Text("Homagama"),value: "Homagama"),
+    ];
+    return menuItems;
+  }
+
+  String selectedDistrict = "Colombo";
+  String selectedDivision = "Colombo";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -224,44 +244,50 @@ class _SignUpPageState extends State<SignUpPage> {
                           Container(
                             child: Text('Home District',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
-                          Container(
-                            height: 33,
-                            width: MediaQuery.of(context).size.width-60,
-                            child: TextField(
-                              controller: TextEditingController(text: homeDistrict),
-                              onChanged: (val){
-                                this.homeDistrict = val;
-                              },
-                              style: TextStyle(color: Colors.black),
-                              decoration: InputDecoration(
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: const BorderSide(color: Colors.black),
-                                ) ,
-                                icon: Icon(Icons.home,size: 20,color: Colors.black,),
+                          Row(
+                            children: [
+                              Icon(Icons.home_outlined),
+                              SizedBox(
+                                width: 10,
                               ),
-                            ),
+                              Container(
+                                height: 33,
+                                width: MediaQuery.of(context).size.width-90,
+                                child: DropdownButton(
+                                  isExpanded: true,
+                                    value: selectedDistrict,
+                                    items: dropdownDistrict,
+                                  onChanged: (String? value) {
+                                    selectedDistrict = value! ;
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 25,),
                           Container(
-                            child: Text('Devisional Secretary',style: TextStyle(fontSize: 19,color: Colors.black,),),
+                            child: Text('Divisional Secretary',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
-                          Container(
-                            height: 33,
-                            width: MediaQuery.of(context).size.width-60,
-                            child: TextField(
-                              controller: TextEditingController(text: devisionalSector),
-                              onChanged: (val){
-                                this.devisionalSector = val;
-                              },
-                              style: TextStyle(color: Colors.black),
-                              decoration: InputDecoration(
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: const BorderSide(color: Colors.black),
-                                ) ,
-                                icon: Icon(Icons.home_outlined,size: 20,color: Colors.black,),
-                              ),
-                            ),
+                    Row(
+                      children: [
+                        Icon(Icons.home_outlined),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          height: 33,
+                          width: MediaQuery.of(context).size.width-90,
+                          child: DropdownButton(
+                            isExpanded: true,
+                            value: selectedDivision,
+                            items: dropdownDivision,
+                            onChanged: (String? value) {
+                              selectedDivision = value! ;
+                            },
                           ),
+                        ),
+                      ],
+                    ),
                           SizedBox(height: 25,),
                           Container(
                             child: Text('Examination Year',style: TextStyle(fontSize: 19,color: Colors.black,),),
@@ -279,7 +305,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 enabledBorder: const UnderlineInputBorder(
                                   borderSide: const BorderSide(color: Colors.black),
                                 ) ,
-                                icon: Icon(Icons.home_outlined,size: 20,color: Colors.black,),
+                                icon: Icon(Icons.date_range_outlined,size: 20,color: Colors.black,),
                               ),
                             ),
                           ),
