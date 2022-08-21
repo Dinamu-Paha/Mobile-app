@@ -109,6 +109,115 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
+  //Success Popup
+  Future<void> openSuccessDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Container(
+            decoration:
+            BoxDecoration(borderRadius: BorderRadius.circular(40)),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: Container(
+                      child: Text(
+                        "Email verification",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Please enter the verification code"),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Container(
+                            height: 35,
+                            child: TextField(
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                filled: true,
+                                hintText: 'Verification Code',
+                                border: OutlineInputBorder(),
+                                contentPadding:
+                                EdgeInsets.only(left: 10.0, top: 5.0),
+                                hintStyle: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color:
+                                    Color(0xFF4B506D).withOpacity(0.4)),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                width: 100,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: AppColor.btnColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                    child: Text(
+                                      "Resend",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                              ),
+                              SizedBox(
+                                width: 25,
+                              ),
+                              Container(
+                                width: 100,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: AppColor.btnColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                    child: Text(
+                                      "Submit",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                              ),
+                            ],
+                          ),
+
+
+
+
+                        ]),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -560,7 +669,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           SizedBox(height: 20,),
                           GestureDetector(
                             onTap:() {
-                              save();
+                              openSuccessDialog();
+                              // save();
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width-60,
