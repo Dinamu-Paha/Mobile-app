@@ -16,7 +16,7 @@ class _QuizersStudentPageState extends State<QuizersStudentPage> {
 
       appBar: AppBar(
         backgroundColor: AppColor.appBColor,
-        title: Text('Profile',style: TextStyle(fontSize: 25),),
+        title: Text('Quize',style: TextStyle(fontSize: 25),),
         // leading: IconButton(
         //   icon: Icon(Icons.menu),
         //   onPressed: (){
