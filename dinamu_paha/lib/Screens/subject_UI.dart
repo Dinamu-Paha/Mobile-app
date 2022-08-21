@@ -33,11 +33,12 @@ class _Subject_UIState extends State<Subject_UI> {
             scrollDirection: Axis.vertical,
             child: Container(
               width: MediaQuery.of(context).size.width-60,
-              padding: EdgeInsets.fromLTRB(0, 60, 0, 80),
+              //padding: EdgeInsets.fromLTRB(0, 0, 0, 180),
               height: MediaQuery.of(context).size.height,
               child: Center(
                 child: ListView(
                   children: [
+                    SizedBox(height: 40,),
                     GestureDetector(
                       child: Container(
                         width: 80,
@@ -101,6 +102,7 @@ class _Subject_UIState extends State<Subject_UI> {
                         child: Center(child: Text('Past Papers', style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),),
                       ),
                     ),
+                    SizedBox(height: 100,),
                   ],
                 ),
               ),
