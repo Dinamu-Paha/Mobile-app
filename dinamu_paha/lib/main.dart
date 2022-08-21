@@ -28,11 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-<<<<<<< HEAD
-      home: Add_Question(),
-=======
       home: HomePage(),
->>>>>>> af2b2febadee73157536358e5a894bd928136ae3
     );
   }
 }

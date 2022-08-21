@@ -20,36 +20,36 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   String firstName = "";
   String lastName = "";
-  var dob;
+  DateTime? dob;
   String email = "";
   String mobileNumber = "";
   String homeDistrict = "";
   String devisionalSector = "";
-  var examinationYear;
+  String examinationYear = "";
   String password = "";
   String confirmPassword = "";
   String school = "";
   String districtOfSchool = "";
 
-//function incompleted
+
   Future save() async{
     print(firstName+" "+lastName);
     String formattedDob = DateFormat('yyyy.mm.dd').format(DateTime.now());
-    print(dob);
+    print(formattedDob);
     final res = await http.post( Uri.parse('http://192.168.56.1:8080/user/signup'),
         headers:{'Content-Type':'application/json'},
         body:json.encode({'firstName' : firstName,
-                          'lastName' : lastName,
-                          'dob' : dob,
-                          'email' : email,
-                          'mobileNumber' : mobileNumber,
-                          'homeDistrict' : homeDistrict,
-                          'divisionalSecretory' : devisionalSector,
-                          'examinationYear' : examinationYear,
-                          'password' : password,
-                          'school' : school,
-                          'districtOfSchool' : districtOfSchool})
-                        );
+          'lastName' : lastName,
+          'dob' : formattedDob,
+          'email' : email,
+          'mobileNumber' : mobileNumber,
+          'homeDistrict' : homeDistrict,
+          'divisionalSecretory' : devisionalSector,
+          'examinationYear' : examinationYear,
+          'password' : password,
+          'school' : school,
+          'districtOfSchool' : districtOfSchool})
+    );
     print(res.body);
 
   }
@@ -89,6 +89,23 @@ class _SignUpPageState extends State<SignUpPage> {
 
 //password show
   bool _obscureText = true;
+
+  bool _isPasswordEightCharacters = false;
+  bool _hasPasswordOneCapital = false;
+
+  onPasswordChanged(String password) {
+    final capitalRegex = RegExp(r'[A-Z]');
+
+    setState(() {
+      _isPasswordEightCharacters = false;
+      if(password.length >= 8)
+        _isPasswordEightCharacters = true;
+
+      _hasPasswordOneCapital = false;
+      if(capitalRegex.hasMatch(password))
+        _hasPasswordOneCapital = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -211,8 +228,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               mode: DateTimeFieldPickerMode.date,
                               autovalidateMode: AutovalidateMode.always,
                               validator: (e) => (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
-                              onDateSelected: (var value) {
-                                // dob = value;
+                              onDateSelected: (DateTime value) {
+                                dob = value;
                               },
                             ),
                           ),
@@ -276,8 +293,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                 width: MediaQuery.of(context).size.width-90,
                                 child: DropdownButton(
                                   isExpanded: true,
-                                    value: selectedDistrict,
-                                    items: dropdownDistrict,
+                                  value: selectedDistrict,
+                                  items: dropdownDistrict,
                                   onChanged: (String? val) {
                                     setState(() {
                                       selectedDistrict = val! ;
@@ -292,48 +309,53 @@ class _SignUpPageState extends State<SignUpPage> {
                           Container(
                             child: Text('Divisional Secretary',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
-                    Row(
-                      children: [
-                        Icon(Icons.home_outlined),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          height: 33,
-                          width: MediaQuery.of(context).size.width-90,
-                          child: DropdownButton(
-                            isExpanded: true,
-                            value: selectedDivision,
-                            items: dropdownDivision,
-                            onChanged: (String? value) {
-                              setState(() {
-                                selectedDivision = value! ;
-                              });
-                            },
+                          Row(
+                            children: [
+                              Icon(Icons.home_outlined),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                height: 33,
+                                width: MediaQuery.of(context).size.width-90,
+                                child: DropdownButton(
+                                  isExpanded: true,
+                                  value: selectedDivision,
+                                  items: dropdownDivision,
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      selectedDivision = value! ;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
                           SizedBox(height: 25,),
                           Container(
                             child: Text('Examination Year',style: TextStyle(fontSize: 19,color: Colors.black,),),
                           ),
-                          Container(
-                            height: 33,
-                            width: MediaQuery.of(context).size.width-60,
-                            child: TextField(
-                              controller: TextEditingController(text: examinationYear),
-                              onChanged: (val){
-                                this.examinationYear = val;
-                              },
-                              style: TextStyle(color: Colors.black),
-                              decoration: InputDecoration(
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: const BorderSide(color: Colors.black),
-                                ) ,
-                                icon: Icon(Icons.home_outlined,size: 20,color: Colors.black,),
+                          Row(
+                            children: [
+                              Icon(Icons.home_outlined),
+                              SizedBox(
+                                width: 10,
                               ),
-                            ),
+                              Container(
+                                height: 33,
+                                width: MediaQuery.of(context).size.width-90,
+                                child: DropdownButton(
+                                  isExpanded: true,
+                                  value: selectedYear,
+                                  items: dropdownYear,
+                                  onChanged: (String? val1) {
+                                    setState(() {
+                                      selectedYear = val1! ;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 25,),
                           Container(
@@ -345,6 +367,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: TextField(
                               controller: TextEditingController(text: password),
                               onChanged: (val){
+                                onPasswordChanged(val);
                                 this.password = val;
                               },
                               style: TextStyle(color: Colors.black),
@@ -370,6 +393,44 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               obscureText: _obscureText,
                             ),
+                          ),
+                          SizedBox(height: 30,),
+                          Row(
+                            children: [
+                              AnimatedContainer(
+                                duration: Duration(milliseconds: 500),
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                    color: _isPasswordEightCharacters ?  Colors.green : Colors.transparent,
+                                    border: _isPasswordEightCharacters ? Border.all(color: Colors.transparent) :
+                                    Border.all(color: Colors.grey.shade400),
+                                    borderRadius: BorderRadius.circular(50)
+                                ),
+                                child: Center(child: Icon(Icons.check, color: Colors.white, size: 15,),),
+                              ),
+                              SizedBox(width: 10,),
+                              Text("Contains at least 8 characters")
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            children: [
+                              AnimatedContainer(
+                                duration: Duration(milliseconds: 500),
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                    color: _hasPasswordOneCapital ?  Colors.green : Colors.transparent,
+                                    border: _hasPasswordOneCapital ? Border.all(color: Colors.transparent) :
+                                    Border.all(color: Colors.grey.shade400),
+                                    borderRadius: BorderRadius.circular(50)
+                                ),
+                                child: Center(child: Icon(Icons.check, color: Colors.white, size: 15,),),
+                              ),
+                              SizedBox(width: 10,),
+                              Text("Contains at least Capital letter")
+                            ],
                           ),
                           SizedBox(height: 25,),
                           Container(
@@ -543,7 +604,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ],
               ),
             ),
-        ),
+          ),
         ),
       ),
     );
