@@ -90,6 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
 //password show
   bool _obscureText = true;
 
+  //validation
   bool _isPasswordEightCharacters = false;
   bool _hasPasswordOneCapital = false;
 
@@ -97,6 +98,7 @@ class _SignUpPageState extends State<SignUpPage> {
     final capitalRegex = RegExp(r'[A-Z]');
 
     setState(() {
+      this.password = password;
       _isPasswordEightCharacters = false;
       if(password.length >= 8)
         _isPasswordEightCharacters = true;
@@ -366,10 +368,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
                               controller: TextEditingController(text: password),
-                              onChanged: (val){
-                                onPasswordChanged(val);
-                                this.password = val;
+                              onSubmitted: (val2) {
+                                onPasswordChanged(val2);
                               },
+                              // onChanged: (val){
+                              //   onPasswordChanged(val);
+                              // },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 suffixIcon: IconButton(
