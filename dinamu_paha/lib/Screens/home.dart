@@ -1,8 +1,4 @@
 import 'package:dinamu_paha/Screens/landing.dart';
-import 'package:dinamu_paha/Screens/signIn.dart';
-import 'package:dinamu_paha/Screens/studentDash.dart';
-import 'package:dinamu_paha/Screens/studentEditProfile.dart';
-import 'package:dinamu_paha/Screens/studentProfile.dart';
 import 'package:flutter/material.dart';
 
 
