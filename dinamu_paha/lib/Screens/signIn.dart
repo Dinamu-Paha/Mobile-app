@@ -17,32 +17,15 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-<<<<<<< HEAD
-  User user = new User("", "");
 
-  TextEditingController _email = TextEditingController();
-
+  String email = "";
+  String password = "";
   Future save() async{
-    final res = await http.post(
-      Uri.parse('http://192.168.56.1:8080/user/login'),
-        headers: {'Content-Type':'application/json'},
-      body: json.encode({'email':user.email, 'password':user.password})
-    );
-
-    print(json.decode(res.body)['name']);
-
-
-=======
-  User user = User("", "");
-  Future save() async{
-
-    // print("dineth");
-    final res = await http.post( Uri.parse('http://192.168.138.35:8080/user/login'),
+    final res = await http.post( Uri.parse('http://192.168.56.1:8080/user/login'),
     headers:{'Content-Type':'application/json'},
-    body:json.encode({'email':user.email, 'password':user.password})
+    body:json.encode({'email':email, 'password':password})
     );
     print(res.body);
->>>>>>> main
   }
   @override
   Widget build(BuildContext context) {
@@ -106,9 +89,9 @@ class _SignInPageState extends State<SignInPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
-                              controller: TextEditingController(text: user.email),
+                              controller: TextEditingController(text: email),
                               onChanged: (val){
-                                user.email = val;
+                                email = val;
                               },
                               decoration: InputDecoration(
                                 icon: Icon(Icons.alternate_email_outlined,size: 20,),
@@ -123,9 +106,9 @@ class _SignInPageState extends State<SignInPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
-                              controller: TextEditingController(text:user.password),
+                              controller: TextEditingController(text:password),
                               onChanged: (val){
-                                user.password = val;
+                                password = val;
                               },
                               decoration: InputDecoration(
                                 icon: Icon(Icons.lock_open,size: 20,),

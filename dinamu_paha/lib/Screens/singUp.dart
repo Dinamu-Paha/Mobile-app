@@ -1,6 +1,13 @@
+import 'dart:convert';
+import 'dart:core';
+import 'dart:ffi';
+
 import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import '../Component/colors.dart';
 
@@ -12,6 +19,42 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  String firstName = "";
+  String lastName = "";
+  DateTime? dob;
+  String email = "";
+  String mobileNumber = "";
+  String homeDistrict = "";
+  String devisionalSector = "";
+  String examinationYear = "";
+  String password = "";
+  String confirmPassword = "";
+  String school = "";
+  String districtOfSchool = "";
+
+
+  Future save() async{
+    print(firstName+" "+lastName);
+    String formattedDob = DateFormat('yyyy.mm.dd').format(DateTime.now());
+    print(formattedDob);
+    final res = await http.post( Uri.parse('http://192.168.56.1:8080/user/signup'),
+        headers:{'Content-Type':'application/json'},
+        body:json.encode({'firstName' : firstName,
+                          'lastName' : lastName,
+                          'dob' : formattedDob,
+                          'email' : email,
+                          'mobileNumber' : mobileNumber,
+                          'homeDistrict' : homeDistrict,
+                          'divisionalSecretory' : devisionalSector,
+                          'examinationYear' : examinationYear,
+                          'password' : password,
+                          'school' : school,
+                          'districtOfSchool' : districtOfSchool})
+                        );
+    print(res.body);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +118,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: firstName),
+                              onChanged: (val){
+                                this.firstName = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -92,6 +139,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: lastName),
+                              onChanged: (val){
+                                this.lastName = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -124,7 +175,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               autovalidateMode: AutovalidateMode.always,
                               validator: (e) => (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
                               onDateSelected: (DateTime value) {
-                                print(value);
+                                dob = value;
                               },
                             ),
                           ),
@@ -136,6 +187,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: email),
+                              onChanged: (val){
+                                this.email = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -153,6 +208,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: mobileNumber),
+                              onChanged: (val){
+                                this.mobileNumber = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -170,6 +229,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: homeDistrict),
+                              onChanged: (val){
+                                this.homeDistrict = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -187,6 +250,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: devisionalSector),
+                              onChanged: (val){
+                                this.devisionalSector = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -204,6 +271,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: examinationYear),
+                              onChanged: (val){
+                                this.examinationYear = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -221,6 +292,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: password),
+                              onChanged: (val){
+                                this.password = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -238,6 +313,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: confirmPassword),
+                              onChanged: (val){
+                                this.confirmPassword = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -261,6 +340,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: school),
+                              onChanged: (val){
+                                this.school = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -278,6 +361,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 33,
                             width: MediaQuery.of(context).size.width-60,
                             child: TextField(
+                              controller: TextEditingController(text: districtOfSchool),
+                              onChanged: (val){
+                                this.districtOfSchool = val;
+                              },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
@@ -319,15 +406,20 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                           SizedBox(height: 20,),
-                          Container(
-                            width: MediaQuery.of(context).size.width-60,
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: AppColor.btnColor,
+                          GestureDetector(
+                            onTap:() {
+                              save();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width-60,
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColor.btnColor,
+                              ),
+                              child: Center(
+                                  child: Text('Sign Up',style: TextStyle(fontSize: 20,color: Colors.black,),)),
                             ),
-                            child: Center(
-                                child: Text('Sign Up',style: TextStyle(fontSize: 20,color: Colors.black,),)),
                           ),
                           SizedBox(height: 20,),
                           Container(
