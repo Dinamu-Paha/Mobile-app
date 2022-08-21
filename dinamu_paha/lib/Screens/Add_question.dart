@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Add_Question extends StatefulWidget {
   const Add_Question({Key? key}) : super(key: key);
@@ -12,10 +12,10 @@ class Add_Question extends StatefulWidget {
 
 class _Add_QuestionState extends State<Add_Question> {
 
-  Future addQuestion() async{
-    final storage = new FlutterSecureStorage();
-    print(storage.read(jwt: jwt));
-  }
+  // Future addQuestion() async{
+  //   final storage = new FlutterSecureStorage();
+  //   print(storage.read(jwt: jwt));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +173,7 @@ class _Add_QuestionState extends State<Add_Question> {
                   SizedBox(height: 50,),
                   GestureDetector(
                     onTap: (){
-                      addQuestion();
+                      //addQuestion();
                     },
                     child: Container(
                       height: 50,

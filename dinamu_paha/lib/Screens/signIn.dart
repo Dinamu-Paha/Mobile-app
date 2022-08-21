@@ -5,7 +5,7 @@ import 'package:dinamu_paha/Screens/fogotPass.dart';
 import 'package:dinamu_paha/Screens/singUp.dart';
 import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 import 'Add_question.dart';
@@ -22,7 +22,7 @@ class _SignInPageState extends State<SignInPage> {
 
   String email = "";
   String password = "";
-  final storage = new FlutterSecureStorage();
+  // final storage = new FlutterSecureStorage();
 
 
   Future save() async{
@@ -32,7 +32,9 @@ class _SignInPageState extends State<SignInPage> {
 
     );
     print(jsonDecode(res.body)['token']);
-    await storage.write(key:'jwt', value: jsonDecode(res.body)['token']);
+    // await storage.write(key:'jwt', value: jsonDecode(res.body)['token']);
+    // String? jwt = await storage.read(key: 'jwt');
+    // print(jwt);
   }
   @override
   Widget build(BuildContext context) {
@@ -162,11 +164,11 @@ class _SignInPageState extends State<SignInPage> {
                           GestureDetector(
                             onTap: (){
                               save();
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) => Add_Question(),
-                                  ));
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (BuildContext context) => Subject_UI(),
+                              //     ));
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width-60,

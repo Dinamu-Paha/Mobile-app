@@ -20,27 +20,27 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   String firstName = "";
   String lastName = "";
-  DateTime? dob;
+  var dob;
   String email = "";
   String mobileNumber = "";
   String homeDistrict = "";
   String devisionalSector = "";
-  String examinationYear = "";
+  var examinationYear;
   String password = "";
   String confirmPassword = "";
   String school = "";
   String districtOfSchool = "";
 
-
+//function incompleted
   Future save() async{
     print(firstName+" "+lastName);
     String formattedDob = DateFormat('yyyy.mm.dd').format(DateTime.now());
-    print(formattedDob);
+    print(dob);
     final res = await http.post( Uri.parse('http://192.168.56.1:8080/user/signup'),
         headers:{'Content-Type':'application/json'},
         body:json.encode({'firstName' : firstName,
                           'lastName' : lastName,
-                          'dob' : formattedDob,
+                          'dob' : dob,
                           'email' : email,
                           'mobileNumber' : mobileNumber,
                           'homeDistrict' : homeDistrict,
@@ -173,8 +173,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               mode: DateTimeFieldPickerMode.date,
                               autovalidateMode: AutovalidateMode.always,
                               validator: (e) => (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
-                              onDateSelected: (DateTime value) {
-                                dob = value;
+                              onDateSelected: (var value) {
+                                // dob = value;
                               },
                             ),
                           ),
@@ -272,7 +272,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: TextField(
                               controller: TextEditingController(text: examinationYear),
                               onChanged: (val){
-                                this.examinationYear = val;
+                                // this.examinationYear = val;
                               },
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(

@@ -1,5 +1,7 @@
 import 'package:dinamu_paha/Screens/Sub_topic_UI.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
 class lesson_UI extends StatefulWidget {
   const lesson_UI({Key? key}) : super(key: key);
@@ -36,8 +38,45 @@ class _lesson_UIState extends State<lesson_UI> {
                 ],
               ),
             ),
+            body: TabBarView(
+              children: [
+                FirstScreen(),
+                Icon(Icons.train),
+                Icon(Icons.car_crash),
+              ],
+            ),
           ),
         )
     );
   }
 }
+
+class FirstScreen extends StatefulWidget {
+  const FirstScreen({Key? key}) : super(key: key);
+
+  @override
+  State<FirstScreen> createState() => _FirstScreenState();
+}
+
+class _FirstScreenState extends State<FirstScreen> {
+  bool _isLoading = true;
+  late PDFDocument document;
+
+  @override
+
+  void initState() {
+    super.initState();
+    loadDocument();
+  }
+
+  loadDocument() async {
+    document = await PDFDocument.fromAsset('assets/Pdf/5  ශ්_රේණිය - පරිසරය - අප අවට සතුන් (අංග සම්පූර්ණ සිද්ධාන්ත නිබන්ධනය).pdf');
+
+    setState(() => _isLoading = false);
+  }
+
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
