@@ -173,7 +173,7 @@ class _Add_QuestionState extends State<Add_Question> {
                   SizedBox(height: 50,),
                   GestureDetector(
                     onTap: (){
-                      // addQuestion();
+                      addQuestion();
                     },
                     child: Container(
                       height: 50,
