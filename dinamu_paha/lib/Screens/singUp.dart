@@ -35,6 +35,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   String code = "";
 
+
+
   Future verificationCodeSubmit() async{
     // print(code);
     // print(email);
@@ -698,7 +700,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: TextField(
                               controller: TextEditingController(text: password),
                               onSubmitted: (val2) {
+                                password = val2;
                                 onPasswordChanged(val2);
+                              },
+                              onChanged: (val){
+                                password = val;
                               },
                               // onChanged: (val){
                               //   onPasswordChanged(val);

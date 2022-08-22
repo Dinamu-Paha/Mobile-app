@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dinamu_paha/Component/colors.dart';
+import 'package:dinamu_paha/Screens/Admin_home.dart';
 import 'package:dinamu_paha/Screens/fogotPass.dart';
 import 'package:dinamu_paha/Screens/singUp.dart';
 import 'package:dinamu_paha/Screens/subject_UI.dart';
@@ -24,6 +25,26 @@ class _SignInPageState extends State<SignInPage> {
   String password = "";
   // final storage = new FlutterSecureStorage();
 
+  bool? check;
+  bool? checkRole;
+
+
+  UserSelect(bool x){
+    if(x==false){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => admin_home(),
+          ));
+    }
+    else if(x==true){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => Subject_UI(),
+          ));
+    }
+  }
 
   Future save() async{
     final res = await http.post( Uri.parse('http://192.168.56.1:8080/user/login'),
@@ -31,7 +52,24 @@ class _SignInPageState extends State<SignInPage> {
     body:json.encode({'email':email, 'password':password})
 
     );
-    print(jsonDecode(res.body)['token']);
+    // print(jsonDecode(res.body)['email']);
+    print(jsonDecode(res.body));
+
+    if(jsonDecode(res.body)['role'] == true){
+      checkRole = true;
+    }
+    if(jsonDecode(res.body)['role'] == false){
+      checkRole = false;
+    }
+
+    if(jsonDecode(res.body)['email'] == ""){
+      check = false;
+    }
+    else{
+      check = true;
+    }
+    LoginValidator(check!);
+    // print(check);
     // await storage.write(key:'jwt', value: jsonDecode(res.body)['token']);
     // String? jwt = await storage.read(key: 'jwt');
     // print(jwt);
@@ -39,18 +77,13 @@ class _SignInPageState extends State<SignInPage> {
 
   //Login function call from sign in
   LoginValidator(bool x){
-    setState(() {
+    print(check);
       if(x==true){
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => Subject_UI(),
-            ));
+        UserSelect(checkRole!);
       }
       else if(x==false){
         openDialog();
       }
-    });
   }
 
   //Error popup
@@ -207,7 +240,9 @@ class _SignInPageState extends State<SignInPage> {
                           SizedBox(height: 20,),
                           GestureDetector(
                             onTap: (){
-                              LoginValidator(true);
+                              // LoginValidator();
+                              // LoginValidator(true);
+                              save();
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width-60,
