@@ -21,11 +21,13 @@ class _SignUpPageState extends State<SignUpPage> {
   String firstName = "";
   String lastName = "";
   DateTime? dob;
+  DateTime? dob1;
   String email = "";
   String mobileNumber = "";
   String homeDistrict = "";
   String devisionalSector = "";
   String examinationYear = "";
+  String examinationYear1 = "";
   String password = "";
   String confirmPassword = "";
   String school = "";
@@ -34,23 +36,25 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Future save() async{
     print(firstName+" "+lastName);
-    String formattedDob = DateFormat('yyyy.mm.dd').format(DateTime.now());
-    print(formattedDob);
+    // String formattedDob = DateFormat('yyyy.mm.dd').format(DateTime.now());
+    // print(formattedDob);
     final res = await http.post( Uri.parse('http://192.168.56.1:8080/user/signup'),
         headers:{'Content-Type':'application/json'},
         body:json.encode({'firstName' : firstName,
           'lastName' : lastName,
-          'dob' : formattedDob,
+          'dob' : dob1,
           'email' : email,
           'mobileNumber' : mobileNumber,
-          'homeDistrict' : homeDistrict,
-          'divisionalSecretory' : devisionalSector,
-          'examinationYear' : examinationYear,
+          'homeDistrict' : selectedHomeDistrict,
+          'divisionalSecretory' : selectedDivision,
+          'examinationYear' : selectedExaminationYear,
           'password' : password,
           'school' : school,
-          'districtOfSchool' : districtOfSchool})
+          'districtOfSchool' : selectedExaminationYear})
     );
     print(res.body);
+    // print(firstName+" "+lastName+" "+dob.toString()+" "+email+" "+mobileNumber+" "+selectedHomeDistrict+" "+
+    // selectedDivision+" "+selectedExaminationYear+" "+password+" "+confirmPassword+" "+school+" "+selectedSchoolOfDistrict);
 
   }
   var _thisYear = DateTime.now().year;
@@ -81,10 +85,10 @@ class _SignUpPageState extends State<SignUpPage> {
     return menuItems;
   }
 
-  String selectedDistrict = "Colombo";
-  String selectedSchoolDistrict = "Colombo";
+  String selectedHomeDistrict = "Colombo";
+  String selectedSchoolOfDistrict = "Colombo";
   String selectedDivision = "Colombo";
-  String selectedYear = "2022";
+  String selectedExaminationYear = "2022";
 
 
 //password show
@@ -295,11 +299,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                 width: MediaQuery.of(context).size.width-90,
                                 child: DropdownButton(
                                   isExpanded: true,
-                                  value: selectedDistrict,
+                                  value: selectedHomeDistrict,
                                   items: dropdownDistrict,
                                   onChanged: (String? val) {
                                     setState(() {
-                                      selectedDistrict = val! ;
+                                      selectedHomeDistrict = val! ;
                                     });
 
                                   },
@@ -348,11 +352,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                 width: MediaQuery.of(context).size.width-90,
                                 child: DropdownButton(
                                   isExpanded: true,
-                                  value: selectedYear,
+                                  value: selectedExaminationYear,
                                   items: dropdownYear,
                                   onChanged: (String? val1) {
                                     setState(() {
-                                      selectedYear = val1! ;
+                                      selectedExaminationYear = val1! ;
                                     });
                                   },
                                 ),
@@ -514,11 +518,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                 width: MediaQuery.of(context).size.width-90,
                                 child: DropdownButton(
                                   isExpanded: true,
-                                  value: selectedSchoolDistrict,
+                                  value: selectedSchoolOfDistrict,
                                   items: dropdownDistrict,
                                   onChanged: (String? val) {
                                     setState(() {
-                                      selectedSchoolDistrict = val! ;
+                                      selectedSchoolOfDistrict = val! ;
                                     });
 
                                   },

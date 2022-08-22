@@ -14,6 +14,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: QuizersStudentPage());
+        child: LandingPage());
   }
 }
