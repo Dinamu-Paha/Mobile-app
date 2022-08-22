@@ -1,6 +1,7 @@
 
 import 'package:dinamu_paha/Screens/Add_question.dart';
 import 'package:dinamu_paha/Screens/Lesson_UI.dart';
+import 'package:dinamu_paha/Screens/Quizzes_&_Games.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:dinamu_paha/Screens/test.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
 
 
-      home: HomePage(),
+      home: SignUpPage(),
     );
   }
 }

@@ -47,7 +47,9 @@ class _quizzes_adminState extends State<quizzes_admin> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 170,
-                color: Colors.lightBlueAccent.withOpacity(0.5),
+                decoration: BoxDecoration(
+                  color: Colors.lightBlueAccent.withOpacity(0.5),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
