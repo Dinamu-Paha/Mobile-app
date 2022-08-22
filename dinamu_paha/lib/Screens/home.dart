@@ -1,5 +1,4 @@
 import 'package:dinamu_paha/Screens/landing.dart';
-import 'package:dinamu_paha/Screens/quizers_student.dart';
 import 'package:flutter/material.dart';
 
 

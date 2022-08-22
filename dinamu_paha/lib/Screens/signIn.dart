@@ -36,6 +36,50 @@ class _SignInPageState extends State<SignInPage> {
     // String? jwt = await storage.read(key: 'jwt');
     // print(jwt);
   }
+
+  //Login function call from sign in
+  LoginValidator(bool x){
+    setState(() {
+      if(x==true){
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => Subject_UI(),
+            ));
+      }
+      else if(x==false){
+        openDialog();
+      }
+    });
+  }
+
+  //popup
+  Future<void> openDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(backgroundColor: Colors.red.shade100,
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Container(
+
+            child: Container(
+              height: 100,
+                child: Center(
+                  child: Text(
+                    "Incorrect Email or Password.",
+                    style: TextStyle(
+                        color: Colors.red,fontSize: 22,
+                    ),),
+                )),
+          ),
+        );
+      },
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -163,12 +207,7 @@ class _SignInPageState extends State<SignInPage> {
                           SizedBox(height: 20,),
                           GestureDetector(
                             onTap: (){
-                              save();
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (BuildContext context) => Subject_UI(),
-                              //     ));
+                              LoginValidator(true);
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width-60,
@@ -198,31 +237,36 @@ class _SignInPageState extends State<SignInPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  height: 50,
-                                  width: 170,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(width: 2.0, color: const Color(0xFF000000)),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        height: 35,
-                                        width: 35,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage("assets/images/img_4.png"),
-                                            fit: BoxFit.cover,
+                                GestureDetector(
+                                  onTap:(){
+                                    openDialog();
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: 170,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(width: 2.0, color: const Color(0xFF000000)),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: 35,
+                                          width: 35,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage("assets/images/img_4.png"),
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: 20,),
-                                      Container(
-                                        child: Text('Google',style: TextStyle(fontSize: 15),),
-                                      ),
-                                    ],
+                                        SizedBox(width: 20,),
+                                        Container(
+                                          child: Text('Google',style: TextStyle(fontSize: 15),),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
