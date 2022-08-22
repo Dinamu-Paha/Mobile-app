@@ -150,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 8,
                           ),
                           Container(
-                            height: 35,
+                            height: 55,
                             child: TextField(
                               keyboardType: TextInputType.number,
                               maxLength: 4,
