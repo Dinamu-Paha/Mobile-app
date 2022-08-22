@@ -157,7 +157,7 @@ class _SignInPageState extends State<SignInPage> {
                                 width: 150,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage("assets/images/img_5.png"),
+                                    image: AssetImage("assets/images/img_3.png"),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -330,11 +330,12 @@ class _SignInPageState extends State<SignInPage> {
                                 ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ),
+                  SizedBox(height: 30,),
                 ],
               ),
             ),
