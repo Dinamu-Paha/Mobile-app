@@ -40,8 +40,8 @@ class _lesson_UIState extends State<lesson_UI> {
             body: TabBarView(
               children: [
                 FirstScreen(),
-                Icon(Icons.train),
-                Icon(Icons.car_crash),
+                SecondScreen(),
+                ThirdScreen(),
               ],
             ),
           ),
@@ -62,5 +62,266 @@ class FirstScreen extends StatelessWidget {
     );
   }
 }
+
+class SecondScreen extends StatefulWidget {
+  const SecondScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SecondScreen> createState() => _SecondScreenState();
+}
+
+class _SecondScreenState extends State<SecondScreen> {
+  String? gender;
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            SizedBox(height: 40,),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Text('1. පහත රූපවලින් දැක්වෙන වාහන අතර ඇති හොඳම සම්බන්ධතාව මත කාණ්ඩ දෙකකට වෙන් කල හැකි ආකාරය කුමක්ද?',
+                style: TextStyle(fontSize: 20),),
+            ),
+            SizedBox(height: 30,),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Row(
+                children: [
+                  Container(
+                    width: (MediaQuery.of(context).size.width)/2-30,
+                    height: (MediaQuery.of(context).size.width)/2-30,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 2),
+                      image: DecorationImage(image: AssetImage('assets/images/Q1_bus.JPG')),
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  Container(
+                    width: (MediaQuery.of(context).size.width)/2-30,
+                    height: (MediaQuery.of(context).size.width)/2-30,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 2),
+                        image: DecorationImage(image: AssetImage('assets/images/Q2_plane.JPG'))
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Row(
+                children: [
+                  Container(
+                    width: (MediaQuery.of(context).size.width)/2-30,
+                    height: (MediaQuery.of(context).size.width)/2-30,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 2),
+                        image: DecorationImage(image: AssetImage('assets/images/Q3_bike.JPG'))
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  Container(
+                    width: (MediaQuery.of(context).size.width)/2-30,
+                    height: (MediaQuery.of(context).size.width)/2-30,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 2),
+                        image: DecorationImage(image: AssetImage('assets/images/Q4_chopper.JPG'))
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Column(
+                  children: [
+
+                    RadioListTile(
+                      title: Text("A, B සහ C, D", style: TextStyle(fontFamily: 'Poppins', fontSize: 20),),
+                      value: "male",
+                      groupValue: gender,
+                      onChanged: (value){
+                        setState(() {
+                          gender = value.toString();
+                        });
+                      },
+                    ),
+
+                    RadioListTile(
+                      title: Text("A, C සහ B, D", style: TextStyle(fontFamily: 'Poppins', fontSize: 20),),
+                      value: "female",
+                      groupValue: gender,
+                      onChanged: (value){
+                        setState(() {
+                          gender = value.toString();
+                        });
+                      },
+                    ),
+
+                    RadioListTile(
+                      title: Text("A, D සහ B, C", style: TextStyle(fontFamily: 'Poppins', fontSize: 20),),
+                      value: "other",
+                      groupValue: gender,
+                      onChanged: (value){
+                        setState(() {
+                          gender = value.toString();
+                        });
+                      },
+                    )
+                  ],
+                ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              height: 60,
+              width: 220,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: Center(child: Text('තහවුරු කරන්න', style: TextStyle(fontSize: 25, color: Colors.white),)),
+            ),
+            SizedBox(height: 40,),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ThirdScreen extends StatefulWidget {
+  const ThirdScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ThirdScreen> createState() => _ThirdScreenState();
+}
+
+class _ThirdScreenState extends State<ThirdScreen> {
+  String? gender;
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            SizedBox(height: 40,),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Text('1. පහත රූපවලින් දැක්වෙන වාහන අතර ඇති හොඳම සම්බන්ධතාව මත කාණ්ඩ දෙකකට වෙන් කල හැකි ආකාරය කුමක්ද?',
+                style: TextStyle(fontSize: 20),),
+            ),
+            SizedBox(height: 30,),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Row(
+                children: [
+                  Container(
+                    width: (MediaQuery.of(context).size.width)/2-30,
+                    height: (MediaQuery.of(context).size.width)/2-30,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 2),
+                      image: DecorationImage(image: AssetImage('assets/images/Q1_bus.JPG')),
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  Container(
+                    width: (MediaQuery.of(context).size.width)/2-30,
+                    height: (MediaQuery.of(context).size.width)/2-30,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 2),
+                        image: DecorationImage(image: AssetImage('assets/images/Q2_plane.JPG'))
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Row(
+                children: [
+                  Container(
+                    width: (MediaQuery.of(context).size.width)/2-30,
+                    height: (MediaQuery.of(context).size.width)/2-30,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 2),
+                        image: DecorationImage(image: AssetImage('assets/images/Q3_bike.JPG'))
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  Container(
+                    width: (MediaQuery.of(context).size.width)/2-30,
+                    height: (MediaQuery.of(context).size.width)/2-30,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 2),
+                        image: DecorationImage(image: AssetImage('assets/images/Q4_chopper.JPG'))
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Column(
+                children: [
+
+                  RadioListTile(
+                    title: Text("A, B සහ C, D", style: TextStyle(fontFamily: 'Poppins', fontSize: 20),),
+                    value: "male",
+                    groupValue: gender,
+                    onChanged: (value){
+                      setState(() {
+                        gender = value.toString();
+                      });
+                    },
+                  ),
+
+                  RadioListTile(
+                    title: Text("A, C සහ B, D", style: TextStyle(fontFamily: 'Poppins', fontSize: 20),),
+                    value: "female",
+                    groupValue: gender,
+                    onChanged: (value){
+                      setState(() {
+                        gender = value.toString();
+                      });
+                    },
+                  ),
+
+                  RadioListTile(
+                    title: Text("A, D සහ B, C", style: TextStyle(fontFamily: 'Poppins', fontSize: 20),),
+                    value: "other",
+                    groupValue: gender,
+                    onChanged: (value){
+                      setState(() {
+                        gender = value.toString();
+                      });
+                    },
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              height: 60,
+              width: 220,
+              decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              child: Center(child: Text('තහවුරු කරන්න', style: TextStyle(fontSize: 25, color: Colors.white),)),
+            ),
+            SizedBox(height: 40,),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 
