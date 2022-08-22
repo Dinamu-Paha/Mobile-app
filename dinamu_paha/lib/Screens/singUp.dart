@@ -109,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
-  //Success Popup
+  //Email verification Popup
   Future<void> openSuccessDialog() async {
     return showDialog<void>(
       context: context,
@@ -152,7 +152,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           Container(
                             height: 35,
                             child: TextField(
-                              keyboardType: TextInputType.emailAddress,
+                              keyboardType: TextInputType.number,
+                              maxLength: 4,
                               decoration: InputDecoration(
                                 filled: true,
                                 hintText: 'Verification Code',
@@ -188,25 +189,26 @@ class _SignUpPageState extends State<SignUpPage> {
                               SizedBox(
                                 width: 25,
                               ),
-                              Container(
-                                width: 100,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: AppColor.btnColor,
-                                  borderRadius: BorderRadius.circular(10),
+                              GestureDetector(
+                                onTap: (){
+                                  CheckVerification(false);
+                                },
+                                child: Container(
+                                  width: 100,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: AppColor.btnColor,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                        "Submit",
+                                        style: TextStyle(color: Colors.white),
+                                      )),
                                 ),
-                                child: Center(
-                                    child: Text(
-                                      "Submit",
-                                      style: TextStyle(color: Colors.white),
-                                    )),
                               ),
                             ],
                           ),
-
-
-
-
                         ]),
                   ),
                 ],
@@ -217,6 +219,184 @@ class _SignUpPageState extends State<SignUpPage> {
       },
     );
   }
+
+  //email verification failed popup
+  Future<void> openVerifyFailedDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(backgroundColor: Colors.red.shade50,
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Container(
+
+            child: Container(
+                height: 85,
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        "Email verification failed",
+                        style: TextStyle(
+                          color: Colors.red,fontSize: 22,
+                        ),),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: AppColor.rdColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text(
+                              "Try again",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        );
+      },
+    );
+  }
+
+  //email verification successfull popup
+  Future<void> openVerifysuccessDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(backgroundColor: Colors.green.shade50,
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Container(
+            child: Container(
+                height: 85,
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        "Sign up successfully",
+                        style: TextStyle(
+                          color: Colors.green ,fontSize: 22,
+                        ),),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => SignInPage(),
+                            ));
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: AppColor.gnColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text(
+                              "Let's Login",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        );
+      },
+    );
+  }
+
+  //email already used popup
+  Future<void> openEmailUsedDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(backgroundColor: Colors.red.shade50,
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Container(
+
+            child: Container(
+                height: 85,
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        "Email already Used",
+                        style: TextStyle(
+                          color: Colors.red ,fontSize: 22,
+                        ),),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: AppColor.rdColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text(
+                              "Try again",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        );
+      },
+    );
+  }
+
+  //Run when user pressed Sign up button
+  CheckEmailUsed(bool y){
+    if(y==true){
+      openSuccessDialog();
+    }
+    else if(y==false){
+      openEmailUsedDialog();
+    }
+  }
+
+  //Run when user pressed submit on the email verification popup
+  CheckVerification(bool z){
+    if(z==true){
+      openVerifysuccessDialog();
+    }
+    else if(z==false){
+      openVerifyFailedDialog();
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -662,15 +842,13 @@ class _SignUpPageState extends State<SignUpPage> {
                                     ],
                                   ),
                                 ),
-
                               ],
                             ),
                           ),
                           SizedBox(height: 20,),
                           GestureDetector(
                             onTap:() {
-                              openSuccessDialog();
-                              // save();
+                              CheckEmailUsed(true);
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width-60,
@@ -714,7 +892,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),

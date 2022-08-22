@@ -53,13 +53,13 @@ class _SignInPageState extends State<SignInPage> {
     });
   }
 
-  //popup
+  //Error popup
   Future<void> openDialog() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
-        return AlertDialog(backgroundColor: Colors.red.shade100,
+        return AlertDialog(backgroundColor: Colors.red.shade50,
           shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           content: Container(
