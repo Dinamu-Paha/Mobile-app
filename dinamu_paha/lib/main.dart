@@ -1,5 +1,5 @@
-
 import 'package:dinamu_paha/Screens/Add_question.dart';
+import 'package:dinamu_paha/Screens/Admin_home.dart';
 import 'package:dinamu_paha/Screens/Lesson_UI.dart';
 import 'package:dinamu_paha/Screens/Quizzes_&_Games.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
@@ -24,15 +24,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false ,
+      debugShowCheckedModeBanner: false,
       title: 'Dinamu paha',
       theme: ThemeData(
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-
-
-      home: SignInPage(),
+      home: HomePage(),
     );
   }
 }
