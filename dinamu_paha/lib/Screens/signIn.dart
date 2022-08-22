@@ -113,6 +113,9 @@ class _SignInPageState extends State<SignInPage> {
   }
 
 
+//password show
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,7 +141,7 @@ class _SignInPageState extends State<SignInPage> {
                     height: 50,
                   ),
                   Container(
-                    height: 680,
+                    height: 620,
                     decoration: BoxDecoration(
                       color: AppColor.formBgColor.withOpacity(0.75),
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(100),bottomRight: Radius.circular(100),)
@@ -196,7 +199,22 @@ class _SignInPageState extends State<SignInPage> {
                               onChanged: (val){
                                 password = val;
                               },
+                              obscureText: _obscureText,
                               decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                  icon: _obscureText
+                                      ? Icon(
+                                    Icons.visibility_off,
+                                    color: AppColor.appBColor,
+                                  )
+                                      : Icon(
+                                    Icons.visibility,
+                                    color: AppColor.blckColor,
+                                  ),
+                                  onPressed: () {
+                                    setState(() => _obscureText = !_obscureText);
+                                  },
+                                ),
                                 icon: Icon(Icons.lock_open,size: 20,),
                               ),
                             ),
@@ -256,58 +274,7 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                           SizedBox(height: 30,),
-                          Container(
-                            width: MediaQuery.of(context).size.width-60,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Or Sign in with',style: TextStyle(fontSize: 15),),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 20,),
-                          Container(
-                            width: MediaQuery.of(context).size.width-60,
 
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                GestureDetector(
-                                  onTap:(){
-                                    openDialog();
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    width: 170,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      border: Border.all(width: 2.0, color: const Color(0xFF000000)),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          height: 35,
-                                          width: 35,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage("assets/images/img_4.png"),
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 20,),
-                                        Container(
-                                          child: Text('Google',style: TextStyle(fontSize: 15),),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 20,),
                           Container(
                             width: MediaQuery.of(context).size.width-60,
                             child: Row(
@@ -335,7 +302,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 30,),
+                  SizedBox(height: 20,),
                 ],
               ),
             ),
