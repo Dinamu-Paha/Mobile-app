@@ -1,3 +1,4 @@
+import 'package:dinamu_paha/Screens/Quizzes_admin.dart';
 import 'package:flutter/material.dart';
 
 class admin_home extends StatefulWidget {
@@ -28,17 +29,26 @@ class _admin_homeState extends State<admin_home> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: 80,
-                width: 300,
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.indigoAccent,
-                  border: Border.all(color: Colors.white,width: 2.0)
-                ),
-                child: Center(
-                    child: Text("Quizzes", style: TextStyle(fontFamily: 'Poppins', fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => quizzes_admin(),
+                      ));
+                },
+                child: Container(
+                  height: 80,
+                  width: 300,
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.indigoAccent,
+                    border: Border.all(color: Colors.white,width: 2.0)
+                  ),
+                  child: Center(
+                      child: Text("Questions", style: TextStyle(fontFamily: 'Poppins', fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
+                  ),
                 ),
               ),
               Container(

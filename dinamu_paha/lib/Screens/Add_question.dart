@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart';
+
+import 'Quizzes_admin.dart';
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Add_Question extends StatefulWidget {
@@ -26,7 +28,13 @@ class _Add_QuestionState extends State<Add_Question> {
             title: Text('දිනමු පහ - Add Question',style: TextStyle(fontFamily: 'Poppins'),),
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => quizzes_admin(),
+                    ));
+              },
             ),
           ),
           body: SingleChildScrollView(

@@ -1,3 +1,5 @@
+import 'package:dinamu_paha/Screens/Add_question.dart';
+import 'package:dinamu_paha/Screens/Admin_home.dart';
 import 'package:flutter/material.dart';
 
 class quizzes_admin extends StatefulWidget {
@@ -34,10 +36,16 @@ class _quizzes_adminState extends State<quizzes_admin> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepPurple,
-          title: Text('දිනමු පහ - Edit Quizzes',style: TextStyle(fontFamily: 'Poppins'),),
+          title: Text('දිනමු පහ - Edit Question',style: TextStyle(fontFamily: 'Poppins'),),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => admin_home(),
+                  ));
+            },
           ),
         ),
         body: SingleChildScrollView(
@@ -301,6 +309,11 @@ class _quizzes_adminState extends State<quizzes_admin> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => Add_Question(),
+                ));
             // Add your onPressed code here!
           },
           label: const Text('Add Question', style: TextStyle(fontFamily: 'Poppins', fontSize: 18),),
