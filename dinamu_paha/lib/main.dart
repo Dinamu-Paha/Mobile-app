@@ -1,5 +1,6 @@
 
 import 'package:dinamu_paha/Screens/Add_question.dart';
+import 'package:dinamu_paha/Screens/Admin_home.dart';
 import 'package:dinamu_paha/Screens/Lesson_UI.dart';
 import 'package:dinamu_paha/Screens/Quizzes_&_Games.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: HomePage(),
+      home: SubTopic_UI(),
     );
   }
 }

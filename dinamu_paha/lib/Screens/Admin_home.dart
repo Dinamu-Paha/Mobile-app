@@ -1,4 +1,5 @@
 import 'package:dinamu_paha/Screens/Quizzes_admin.dart';
+import 'package:dinamu_paha/Screens/admin_pastpapers.dart';
 import 'package:flutter/material.dart';
 
 class admin_home extends StatefulWidget {
@@ -64,17 +65,26 @@ class _admin_homeState extends State<admin_home> {
                     child: Text("Lessons", style: TextStyle(fontFamily: 'Poppins', fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
                 ),
               ),
-              Container(
-                height: 80,
-                width: 300,
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.lightBlueAccent,
-                    border: Border.all(color: Colors.white,width: 2.0)
-                ),
-                child: Center(
-                    child: Text("Past Papers", style: TextStyle(fontFamily: 'Poppins', fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => AdminPastPapersPage(),
+                      ));
+                },
+                child: Container(
+                  height: 80,
+                  width: 300,
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.lightBlueAccent,
+                      border: Border.all(color: Colors.white,width: 2.0)
+                  ),
+                  child: Center(
+                      child: Text("Past Papers", style: TextStyle(fontFamily: 'Poppins', fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
+                  ),
                 ),
               ),
               Container(
