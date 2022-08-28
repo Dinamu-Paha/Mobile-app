@@ -42,6 +42,8 @@ dependencies:
   syncfusion_flutter_gauges: ^20.2.44
   syncfusion_flutter_pdfviewer: ^20.2.44-beta
   advance_pdf_viewer: ^2.0.1
+  pdf_merge: ^0.0.1
+  animated_background: ^2.0.0
 
 
 dev_dependencies:

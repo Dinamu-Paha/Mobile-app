@@ -11,6 +11,15 @@ class SubTopic_UI extends StatefulWidget {
 }
 
 class _SubTopic_UIState extends State<SubTopic_UI> {
+
+  bool _isVisible = false;
+
+  void showToast() {
+    setState(() {
+      _isVisible = !_isVisible;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -47,7 +56,7 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                    height: MediaQuery.of(context).size.height-319,
+                    height: MediaQuery.of(context).size.height-200,
                     decoration: BoxDecoration(
                       color: Colors.cyanAccent.withOpacity(0.3),
                     ),
@@ -62,12 +71,41 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                                     builder: (BuildContext context) => lesson_UI(),
                                   ));
                             },
-                            child: Container(
-                              width: 80,
-                              height: 50,
-                              margin: EdgeInsets.fromLTRB(40, 0, 40, 30),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.cyan.withOpacity(0.8),),
-                              child: Center(child: Text('අප අවට සත්තු', style: TextStyle(fontSize: 25),),),
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: 310,
+                                  height: 50,
+                                  margin: EdgeInsets.fromLTRB(40, 0, 40, 30),
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.cyan.withOpacity(0.8),),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                      children:[
+                                        Text('අප අවට සත්තු', style: TextStyle(fontSize: 25),),
+                                        SizedBox(width: 20,),
+                                        IconButton(onPressed: showToast, icon: Icon(Icons.arrow_drop_down)),
+                                        ]),
+                                ),
+                                Visibility(
+                                    visible: _isVisible,
+                                    child: Column(
+                                    children: [
+                                    Container(
+                                      width: 310,
+                                      height: 50,
+                                      margin: EdgeInsets.fromLTRB(40, 0, 40, 30),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.cyan.withOpacity(0.8),),
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children:[
+                                            Text('අප අවට සත්තු - subtopic', style: TextStyle(fontSize: 25),),
+                                            SizedBox(width: 20,),
+                                          ]),
+                                    ),
+                                  ],
+                                )
+                                )
+                              ],
                             ),
                           ),
                           GestureDetector(

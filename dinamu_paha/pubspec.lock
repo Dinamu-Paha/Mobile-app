@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  animated_background:
+    dependency: "direct main"
+    description:
+      name: animated_background
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   async:
     dependency: transitive
     description:
@@ -275,6 +282,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  pdf_merge:
+    dependency: "direct main"
+    description:
+      name: pdf_merge
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   pedantic:
     dependency: transitive
     description:

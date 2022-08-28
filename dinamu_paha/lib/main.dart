@@ -12,6 +12,7 @@ import 'Screens/Quizzes_admin.dart';
 import 'package:flutter/material.dart';
 import 'Screens/home.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'Screens/Main_Subject.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: Subject_UI(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
 
 class Quiz_Games extends StatefulWidget {
@@ -18,6 +19,11 @@ class _Quiz_GamesState extends State<Quiz_Games> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => Subject_UI(),
+                      ));
                 },
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:dinamu_paha/Screens/Sub_topic_UI.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+
 class lesson_UI extends StatefulWidget {
   const lesson_UI({Key? key}) : super(key: key);
 
@@ -50,15 +51,18 @@ class _lesson_UIState extends State<lesson_UI> {
   }
 }
 
-class FirstScreen extends StatelessWidget {
+class FirstScreen extends StatefulWidget {
   const FirstScreen({Key? key}) : super(key: key);
 
   @override
+  State<FirstScreen> createState() => _FirstScreenState();
+}
+
+class _FirstScreenState extends State<FirstScreen> {
+  @override
   Widget build(BuildContext context) {
     return Container(
-      child: SfPdfViewer.asset(
-        'assets/Pdf/Grade_5_apa_awata_sathun.pdf',
-      ),
+        child: SfPdfViewer.asset('assets/Pdf/Grade_5_apa_awata_sathun.pdf'),
     );
   }
 }
@@ -72,6 +76,7 @@ class SecondScreen extends StatefulWidget {
 
 class _SecondScreenState extends State<SecondScreen> {
   String? gender;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

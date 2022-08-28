@@ -70,12 +70,13 @@ class _SignUpPageState extends State<SignUpPage> {
           'dob' : dob1,
           'email' : email,
           'mobileNumber' : mobileNumber,
-          'homeDistrict' : selectedHomeDistrict,
-          'divisionalSecretory' : selectedDivision,
-          'examinationYear' : selectedExaminationYear,
+          // 'homeDistrict' : selectedHomeDistrict,
+          // 'divisionalSecretory' : selectedDivision,
+          // 'examinationYear' : selectedExaminationYear,
           'password' : password,
           'school' : school,
-          'districtOfSchool' : selectedExaminationYear})
+          // 'districtOfSchool' : selectedExaminationYear
+        })
     );
     bool? toBool;
     if(res.body == "true"){

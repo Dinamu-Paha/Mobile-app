@@ -1,5 +1,6 @@
 import 'package:dinamu_paha/Screens/Quizzes_admin.dart';
 import 'package:dinamu_paha/Screens/admin_pastpapers.dart';
+import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:flutter/material.dart';
 
 class admin_home extends StatefulWidget {
@@ -19,7 +20,13 @@ class _admin_homeState extends State<admin_home> {
           title: Text('දිනමු පහ - Admin Home',style: TextStyle(fontFamily: 'Poppins'),),
           leading: IconButton(
             icon: Icon(Icons.menu),
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => SignInPage(),
+                  ));
+            },
           ),
         ),
         body: Container(
@@ -97,7 +104,7 @@ class _admin_homeState extends State<admin_home> {
                     border: Border.all(color: Colors.white,width: 2.0)
                 ),
                 child: Center(
-                    child: Text("Student Statics", style: TextStyle(fontFamily: 'Poppins', fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
+                    child: Text("Student Stats.", style: TextStyle(fontFamily: 'Poppins', fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
                 ),
               ),
             ],
