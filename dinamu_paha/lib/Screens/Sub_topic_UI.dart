@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'Lesson_UI.dart';
 
 class SubTopic_UI extends StatefulWidget {
-  const SubTopic_UI({Key? key}) : super(key: key);
+  var subject;
+  SubTopic_UI({Key? key, this.subject}) : super(key: key);
 
   @override
   State<SubTopic_UI> createState() => _SubTopic_UIState();
@@ -12,13 +13,30 @@ class SubTopic_UI extends StatefulWidget {
 
 class _SubTopic_UIState extends State<SubTopic_UI> {
 
-  bool _isVisible = false;
+  List<Color> colors = [
+    Colors.blueGrey.withOpacity(0.3),
+    Colors.orange.withOpacity(0.3),
+    Colors.deepPurple.withOpacity(0.3),
+    Colors.lightGreenAccent.withOpacity(0.3),
+    Colors.cyan.withOpacity(0.3),
+    Colors.orangeAccent.withOpacity(0.3),
+    Colors.orangeAccent.withOpacity(0.3),
+    Colors.tealAccent.withOpacity(0.3),
+    Colors.lightBlueAccent.withOpacity(0.3),
+    Colors.purpleAccent.withOpacity(0.3),
+  ];
 
-  void showToast() {
-    setState(() {
-      _isVisible = !_isVisible;
-    });
-  }
+  List sub_topic = [
+    'අප අවට සත්තු',
+    'අපේ යහපැවැත්ම',
+    'පොලොව හා අහස',
+    'අප හා වෙළඳ පොළ',
+    'පැලෑටි හා ගස්වැල්',
+    'අපි ලක් වැසියෝ',
+    'අප පරිහරණය කරන දේ',
+    'අපේ ආහාර',
+    'ආරක්ෂාව හා පරිස්සම',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +44,7 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.deepPurple,
-            title: Text('දිනමු පහ - පරිසරය',),
+            title: Text('දිනමු පහ - '+(widget.subject),),
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: (){

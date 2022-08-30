@@ -1,42 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:video_player/video_player.dart';
 
-
-/// Represents Homepage for Navigation
 class test extends StatefulWidget {
+  const test({Key? key}) : super(key: key);
+
   @override
-  _test createState() => _test();
+  State<test> createState() => _testState();
 }
 
-class _test extends State<test> {
-  final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+class _testState extends State<test> {
+
+  late VideoPlayerController _controller;
 
   @override
+
   void initState() {
     super.initState();
+    _controller = VideoPlayerController.asset(
+        "assets/Video/Bunny.mp4")
+      ..initialize().then((_) {
+        _controller.play();
+        _controller.setLooping(true);
+        _controller.setVolume(0.0);
+        // Ensure the first frame is shown after the video is initialized
+        setState(() {});
+      });
   }
 
-  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Syncfusion Flutter PDF Viewer'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.bookmark,
-              color: Colors.white,
-              semanticLabel: 'Bookmark',
-            ),
-            onPressed: () {
-              _pdfViewerKey.currentState?.openBookmarkView();
-            },
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: <Widget>[
+        SizedBox.expand(
+        child: FittedBox(
+          fit: BoxFit.cover,
+          child: SizedBox(
+            width: _controller.value.size?.width ?? 0,
+            height: _controller.value.size?.height ?? 0,
+            child: VideoPlayer(_controller),
           ),
-        ],
+        ),
       ),
-      body: SfPdfViewer.network(
-        'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
-        key: _pdfViewerKey,
+      ],
+        ),
       ),
     );
   }

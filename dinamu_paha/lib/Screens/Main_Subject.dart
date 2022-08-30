@@ -2,7 +2,6 @@ import 'package:dinamu_paha/Screens/Quizzes_&_Games.dart';
 import 'package:dinamu_paha/Screens/Sub_topic_UI.dart';
 import 'package:dinamu_paha/Screens/studentDash.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_background/animated_background.dart';
 
 class Main_Subject extends StatefulWidget {
   const Main_Subject({Key? key}) : super(key: key);
@@ -29,18 +28,18 @@ class _Main_SubjectState extends State<Main_Subject> with SingleTickerProviderSt
     'පරිසරය',
   ];
 
-  ParticleOptions particles = const ParticleOptions(
-    baseColor: Colors.cyanAccent,
-    spawnOpacity: 0.0,
-    opacityChangeRate: 0.25,
-    minOpacity: 0.1,
-    maxOpacity: 0.4,
-    particleCount: 70,
-    spawnMaxRadius: 15.0,
-    spawnMaxSpeed: 100.0,
-    spawnMinSpeed: 30,
-    spawnMinRadius: 7.0,
-  );
+  // ParticleOptions particles = const ParticleOptions(
+  //   baseColor: Colors.cyanAccent,
+  //   spawnOpacity: 0.0,
+  //   opacityChangeRate: 0.25,
+  //   minOpacity: 0.1,
+  //   maxOpacity: 0.4,
+  //   particleCount: 70,
+  //   spawnMaxRadius: 15.0,
+  //   spawnMaxSpeed: 100.0,
+  //   spawnMinSpeed: 30,
+  //   spawnMinRadius: 7.0,
+  // );
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +51,7 @@ class _Main_SubjectState extends State<Main_Subject> with SingleTickerProviderSt
           title: Text('දිනමු පහ - ශිෂ්‍යත්ව අත්වැල'),
 
         ),
-        body: AnimatedBackground(
-          behaviour: RandomParticleBehaviour(options: particles),
-          vsync: this,
-          child: Container(
+        body: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
@@ -119,7 +115,6 @@ class _Main_SubjectState extends State<Main_Subject> with SingleTickerProviderSt
               ),
               ),
             ),
-        ),
         ),
       );
   }
