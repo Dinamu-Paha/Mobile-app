@@ -40,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Future verificationCodeSubmit() async{
     // print(code);
     // print(email);
-    final res = await http.post( Uri.parse('http://192.168.56.1:8080/user/mailverify'),
+    final res = await http.post( Uri.parse('http://ec2-54-193-124-35.us-west-1.compute.amazonaws.com:8080/user/mailverify'),
         headers:{'Content-Type':'application/json'},
         body:json.encode({
           'email' : email,
@@ -63,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
     print(firstName+" "+lastName);
     // String formattedDob = DateFormat('yyyy.mm.dd').format(DateTime.now());
     // print(formattedDob);
-    final res = await http.post( Uri.parse('http://192.168.56.1:8080/user/signup'),
+    final res = await http.post( Uri.parse('http://ec2-54-193-124-35.us-west-1.compute.amazonaws.com:8080/user/signup'),
         headers:{'Content-Type':'application/json'},
         body:json.encode({'firstName' : firstName,
           'lastName' : lastName,
