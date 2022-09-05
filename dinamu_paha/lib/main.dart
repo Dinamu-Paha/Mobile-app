@@ -2,6 +2,7 @@ import 'package:dinamu_paha/Screens/Add_question.dart';
 import 'package:dinamu_paha/Screens/Admin_home.dart';
 import 'package:dinamu_paha/Screens/Lesson_UI.dart';
 import 'package:dinamu_paha/Screens/Quizzes_&_Games.dart';
+import 'package:dinamu_paha/Screens/Sub_subtopic.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:dinamu_paha/Screens/test.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'Screens/home.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'Screens/Main_Subject.dart';
+import 'Screens/Quizzes_&_Games.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: Quiz_Games(),
     );
   }
 }
