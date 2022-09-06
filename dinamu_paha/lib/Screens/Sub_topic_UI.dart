@@ -99,13 +99,13 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                       children:[
-                                        Text('අප අවට සත්තු', style: TextStyle(fontSize: 25),),
-                                        SizedBox(width: 20,),
-                                        IconButton(onPressed: showToast, icon: Icon(Icons.arrow_drop_down)),
+                                        // Text('අප අවට සත්තු', style: TextStyle(fontSize: 25),),
+                                        // SizedBox(width: 20,),
+                                        // IconButton(onPressed: showToast, icon: Icon(Icons.arrow_drop_down)),
                                         ]),
                                 ),
                                 Visibility(
-                                    visible: _isVisible,
+                                    // visible: _isVisible,
                                     child: Column(
                                     children: [
                                     Container(

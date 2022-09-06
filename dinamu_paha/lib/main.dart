@@ -4,6 +4,7 @@ import 'package:dinamu_paha/Screens/Lesson_UI.dart';
 import 'package:dinamu_paha/Screens/Quizzes_&_Games.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:dinamu_paha/Screens/test.dart';
+import 'package:dinamu_paha/slidingGame/Board.dart';
 import 'package:flutter/material.dart';
 import 'Screens/singUp.dart';
 import 'Screens/subject_UI.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: SlidingGame(),
     );
   }
 }
