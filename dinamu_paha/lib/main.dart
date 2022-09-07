@@ -15,6 +15,7 @@ import 'Screens/home.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'Screens/Main_Subject.dart';
 import 'Screens/Quizzes_&_Games.dart';
+import 'Screens/Game_1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: Quiz_Games(),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
