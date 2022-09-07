@@ -12,7 +12,6 @@ class SubTopic_UI extends StatefulWidget {
 }
 
 class _SubTopic_UIState extends State<SubTopic_UI> {
-
   List<Color> colors = [
     Colors.deepPurpleAccent.withOpacity(0.8),
     Colors.lightGreenAccent.withOpacity(0.8),
@@ -49,66 +48,76 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.deepPurple,
-            title: Text('දිනමු පහ - '+widget.subject,),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => Subject_UI(),
-                    ));
-              },
-            ),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.deepPurple,
+          title: Text(
+            'දිනමු පහ - ' + widget.subject,
           ),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Container(
-              child: Column(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/subtopic_parisaraya_BK.jpg"),
-                        fit: BoxFit.fill,
-                      ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => Subject_UI(),
+                  ));
+            },
+          ),
+        ),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+            child: Column(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                          "assets/images/subtopic_parisaraya_BK.jpg"),
+                      fit: BoxFit.fill,
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                    height: MediaQuery.of(context).size.height-300,
-                    decoration: BoxDecoration(
-                      color: Colors.cyanAccent.withOpacity(0.3),
-                    ),
-                    child: ListView.custom(
-                      childrenDelegate: SliverChildBuilderDelegate((BuildContext, index) {
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  height: MediaQuery.of(context).size.height - 300,
+                  decoration: BoxDecoration(
+                    color: Colors.cyanAccent.withOpacity(0.3),
+                  ),
+                  child: ListView.custom(
+                    childrenDelegate: SliverChildBuilderDelegate(
+                      (BuildContext, index) {
                         return Container(
                           height: 50,
                           width: 50,
                           alignment: Alignment.center,
                           margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),color: colors[index],),
-                          child: Text(sub_topic[index],style: TextStyle(fontSize: 25),),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: colors[index],
+                          ),
+                          child: Text(
+                            sub_topic[index],
+                            style: TextStyle(fontSize: 25),
+                          ),
                         );
                       },
-                        childCount: 9,
-                      ),
-                      shrinkWrap: true,
-                      padding: EdgeInsets.all(5),
-                      scrollDirection: Axis.vertical,
+                      childCount: 9,
                     ),
+                    shrinkWrap: true,
+                    padding: EdgeInsets.all(5),
+                    scrollDirection: Axis.vertical,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-    ),
+        ),
+      ),
     );
   }
 }
