@@ -132,23 +132,6 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                     ),
                     SizedBox(height: 25,),
                     Container(
-                      child: Text('E-mail',style: TextStyle(fontSize: 19,color: Colors.black,),),
-                    ),
-                    Container(
-                      height: 33,
-                      width: MediaQuery.of(context).size.width-60,
-                      child: TextField(
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                          enabledBorder: const UnderlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                          ) ,
-                          icon: Icon(Icons.alternate_email_outlined,size: 20,color: Colors.black,),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 25,),
-                    Container(
                       child: Text('Mobile No.',style: TextStyle(fontSize: 19,color: Colors.black,),),
                     ),
                     Container(
