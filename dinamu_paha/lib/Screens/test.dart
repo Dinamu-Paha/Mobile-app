@@ -1,335 +1,114 @@
-import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 
-class test extends StatefulWidget {
-  const test({Key? key}) : super(key: key);
+class ColorGame extends StatefulWidget {
+  ColorGame({Key? key}) : super(key: key);
 
-  @override
-  State<test> createState() => _test();
+  createState() => ColorGameState();
 }
 
-class _test extends State<test> {
+class ColorGameState extends State<ColorGame> {
+  /// Map to keep track of score
+  final Map<String, bool> score = {};
+
+  /// Choices for game
+  final Map choices = {
+    '🍏': Colors.green,
+    '🍋': Colors.yellow,
+    '🍅': Colors.red,
+    '🍇': Colors.purple,
+    '🥥': Colors.brown,
+    '🥕': Colors.orange
+  };
+
+  // Random seed to shuffle order of items.
+  int seed = 0;
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.deepPurple,
-          title: Text('දිනමු පහ - Quizzes And Games',),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => Subject_UI(),
-                  ));
-            },
-          ),
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            color: Colors.tealAccent.withOpacity(0.3),
-            child: Container(
-              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Column(
-                children: [
-                  SizedBox(height: 30,),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                              width: (MediaQuery.of(context).size.width/3)-30,
-                              height: (MediaQuery.of(context).size.width/3)-30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.green, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Icon(Icons.done, color: Colors.green.withOpacity(0.7), size: 130,)
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 1 \n     Completed', style: TextStyle(color: Colors.green, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 2\n           Try', style: TextStyle(color: Colors.grey, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 3\nNot Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 30,),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 4 \n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 5 \n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 6 \n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 30,),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 7 \n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 8 \n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 9 \n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 30,),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 10\n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 11\n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 12\n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 30,),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 13 \n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 14 \n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 25,),
-                      Column(
-                        children: [
-                          Container(
-                            width: (MediaQuery.of(context).size.width/3)-30,
-                            height: (MediaQuery.of(context).size.width/3)-30,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 3),
-                                image: DecorationImage(image: AssetImage('assets/images/img_3.png')),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          Center(
-                            child: Text('Quiz & Games 15 \n Not Completed', style: TextStyle(color: Colors.black, fontSize: 14),),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 30,),
-                ],
-              ),
-            ),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Score ${score.length} / 6'),
+          backgroundColor: Colors.pink),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.refresh),
+        onPressed: () {
+          setState(() {
+            score.clear();
+            seed++;
+          });
+        },
+      ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: choices.keys.map((emoji) {
+                return Draggable<String>(
+                  data: emoji,
+                  child: Emoji(emoji: score[emoji] == true ? '✅' : emoji),
+                  feedback: Emoji(emoji: emoji),
+                  childWhenDragging: Emoji(emoji: '🌱'),
+                );
+              }).toList()),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children:
+            choices.keys.map((emoji) => _buildDragTarget(emoji)).toList()
+              ..shuffle(Random(seed)),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDragTarget(emoji) {
+    return DragTarget<String>(
+      builder: (BuildContext context, List<String?> incoming, List<dynamic> rejected) {
+        if (score[emoji] == true) {
+          return Container(
+            color: Colors.white,
+            child: Text('Correct!'),
+            alignment: Alignment.center,
+            height: 80,
+            width: 200,
+          );
+        } else {
+          return Container(color: choices[emoji], height: 80, width: 200);
+        }
+      },
+      onWillAccept: (data) => data == emoji,
+      onAccept: (data) {
+        setState(() {
+          score[emoji] = true;
+          //plyr.play('success.mp3');
+        });
+      },
+      onLeave: (data) {},
+    );
+  }
+}
+
+class Emoji extends StatelessWidget {
+  Emoji({Key? key, required this.emoji}) : super(key: key);
+
+  final String emoji;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        alignment: Alignment.center,
+        height: 80,
+        padding: EdgeInsets.all(10),
+        child: Text(
+          emoji,
+          style: TextStyle(color: Colors.black, fontSize: 50),
         ),
       ),
     );

@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import '../Component/barChartModel.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 
 class StudentProfile extends StatefulWidget {
@@ -88,7 +89,6 @@ class _StudentProfileState extends State<StudentProfile> {
                       image: DecorationImage(
                         image: AssetImage("assets/images/dpimage.png"),
                         fit: BoxFit.cover,
-
                       ),
                     borderRadius: BorderRadius.circular(100),
                     color: AppColor.appBColor,
@@ -177,10 +177,16 @@ class _StudentProfileState extends State<StudentProfile> {
                           height: 50,
                           width: MediaQuery.of(context).size.width-60,
                           decoration: BoxDecoration(
-                              color: AppColor.btnColor,
                               borderRadius: BorderRadius.circular(30)
                           ),
-                          child: Center(child: Text("සිංහල", style: TextStyle(fontSize: 22),)),
+                          child: new LinearPercentIndicator(
+                        width: MediaQuery.of(context).size.width-60,
+                        lineHeight: 50.0,
+                        percent: 0.65,
+                        center: Text("සිංහල", style: TextStyle(fontSize: 22),),
+                        progressColor: AppColor.btnColor,
+                            barRadius: const Radius.circular(30),
+                      ),
                         ),
                       ),
                       SizedBox(
@@ -194,14 +200,13 @@ class _StudentProfileState extends State<StudentProfile> {
                                 builder: (BuildContext context) => SubjectStats(title: "ගණිතය"),
                               ));
                         },
-                        child: Container(
-                          height: 50,
+                        child: new LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width-60,
-                          decoration: BoxDecoration(
-                              color: AppColor.btnColor,
-                              borderRadius: BorderRadius.circular(30)
-                          ),
-                          child: Center(child: Text("ගණිතය", style: TextStyle(fontSize: 22),)),
+                          lineHeight: 50.0,
+                          percent: 0.5,
+                          center: Text("ගණිතය", style: TextStyle(fontSize: 22),),
+                          progressColor: AppColor.btnColor,
+                          barRadius: const Radius.circular(30),
                         ),
                       ),
                       SizedBox(
@@ -215,14 +220,13 @@ class _StudentProfileState extends State<StudentProfile> {
                                 builder: (BuildContext context) => SubjectStats(title: "බුද්ධ ධර්මය"),
                               ));
                         },
-                        child: Container(
-                          height: 50,
+                        child: new LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width-60,
-                          decoration: BoxDecoration(
-                              color: AppColor.btnColor,
-                              borderRadius: BorderRadius.circular(30)
-                          ),
-                          child: Center(child: Text("බුද්ධ ධර්මය", style: TextStyle(fontSize: 22),)),
+                          lineHeight: 50.0,
+                          percent: 0.3,
+                          center: Text("බුද්ධි පරීක්ෂණය", style: TextStyle(fontSize: 22),),
+                          progressColor: AppColor.btnColor,
+                          barRadius: const Radius.circular(30),
                         ),
                       ),
                       SizedBox(
@@ -236,14 +240,13 @@ class _StudentProfileState extends State<StudentProfile> {
                                 builder: (BuildContext context) => SubjectStats(title: "ඉංග්‍රීසි"),
                               ));
                         },
-                        child: Container(
-                          height: 50,
+                        child: new LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width-60,
-                          decoration: BoxDecoration(
-                              color: AppColor.btnColor,
-                              borderRadius: BorderRadius.circular(30)
-                          ),
-                          child: Center(child: Text("ඉංග්‍රීසි", style: TextStyle(fontSize: 22),)),
+                          lineHeight: 50.0,
+                          percent: 0.8,
+                          center: Text("ඉංග්‍රීසි", style: TextStyle(fontSize: 22),),
+                          progressColor: AppColor.btnColor,
+                          barRadius: const Radius.circular(30),
                         ),
                       ),
                       SizedBox(
@@ -257,14 +260,13 @@ class _StudentProfileState extends State<StudentProfile> {
                                 builder: (BuildContext context) => SubjectStats(title: "පරිසරය"),
                               ));
                         },
-                        child: Container(
-                          height: 50,
+                        child: new LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width-60,
-                          decoration: BoxDecoration(
-                              color: AppColor.btnColor,
-                              borderRadius: BorderRadius.circular(30)
-                          ),
-                          child: Center(child: Text("පරිසරය", style: TextStyle(fontSize: 22),)),
+                          lineHeight: 50.0,
+                          percent: 1,
+                          center: Text("පරිසරය", style: TextStyle(fontSize: 22),),
+                          progressColor: AppColor.btnColor,
+                          barRadius: const Radius.circular(30),
                         ),
                       ),
                     ],
