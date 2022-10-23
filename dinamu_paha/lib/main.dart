@@ -7,6 +7,7 @@ import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:dinamu_paha/Screens/test.dart';
 import 'package:dinamu_paha/slidingGame/Board.dart';
 import 'package:flutter/material.dart';
+import 'Screens/quizeInside.dart';
 import 'Screens/singUp.dart';
 import 'Screens/subject_UI.dart';
 import 'Screens/Sub_topic_UI.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: QuizeInside(),
     );
   }
 }
