@@ -47,7 +47,7 @@ class _QuizeInsideState extends State<QuizeInside> {
 
   Future <List<dynamic>> getQuestions()async {
     final res = await http.get(
-        Uri.parse('http://192.168.173.35:8080/question/getquestionsofquiz/quiz1')
+        Uri.parse('http://192.168.43.90:8080/question/getquestionsofquiz/quiz1')
         // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
@@ -260,14 +260,16 @@ class _QuizeInsideState extends State<QuizeInside> {
                     return Expanded(
                       child: ListView.builder(itemCount: snapshot.data?.length ,itemBuilder: (context, index){
                         return Card(
+                          elevation: 20,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(snapshot.data?[index]["prescription"] ?? ""),
-                              Text(snapshot.data?[index]["postcription"] ?? ""),
+                              SizedBox(height: 15,),
+                              Text(snapshot.data?[index]["prescription"] ?? "", style: TextStyle(fontFamily: 'poppins', fontSize: 22),),
+                              Text(snapshot.data?[index]["postcription"] ?? "", style: TextStyle(fontFamily: 'poppins', fontSize: 22),),
 
-                              SizedBox(height: 20,),
+                              SizedBox(height: 10,),
 
                               RadioListTile(
                                 selected: false,
@@ -283,7 +285,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                                     print(_correctAnswerList);
                                   });
                                 },
-                                title: Text(snapshot.data?[index]["ans1"] ?? ""),
+                                title: Text(snapshot.data?[index]["ans1"] ?? "",style: TextStyle(fontFamily: 'poppins', fontSize: 20),),
                               ),
                               RadioListTile(
                                 selected: false,
@@ -299,7 +301,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                                     print(_correctAnswerList);
                                   });
                                 },
-                                title: Text(snapshot.data?[index]["ans2"] ?? ""),
+                                title: Text(snapshot.data?[index]["ans2"] ?? "",style: TextStyle(fontFamily: 'poppins', fontSize: 20),),
                               ),
                               RadioListTile(
                                 selected: false,
@@ -315,11 +317,9 @@ class _QuizeInsideState extends State<QuizeInside> {
                                     print(_correctAnswerList);
                                   });
                                 },
-                                title: Text(snapshot.data?[index]["ans3"] ?? ""),
+                                title: Text(snapshot.data?[index]["ans3"] ?? "", style: TextStyle(fontFamily: 'poppins', fontSize: 20),),
                               ),
-
-
-
+                              SizedBox(height: 20,),
                             ],
                           ),
                         );
