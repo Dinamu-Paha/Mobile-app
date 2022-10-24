@@ -41,14 +41,13 @@ class _QuizeInsideState extends State<QuizeInside> {
     );
   }
 
-  List <dynamic> quest = <dynamic>[{"questionId": 62, "prescription": "පහත ප්‍රශ්නයේ A අකුර තෝරන්න.", "postcription": "null", "ans1": "A අකුර", "ans2": "B අකුර", "ans3": "C අකුර", "ans4": "null", "correctAns": "A අකුර", "subjectId": 36, "subtopicId": 37}];
-  int length=0;
+ int length=0;
 
   Future <List<dynamic>> getQuestions()async {
 
 
     final res = await http.get(
-        Uri.parse('http://192.168.173.35:8080/question/getquestion/36/37')
+        Uri.parse('http://192.168.43.90:8080/question/getquestion/36/37')
         // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
@@ -191,6 +190,15 @@ class _QuizeInsideState extends State<QuizeInside> {
     );
   }
 
+  int a = 3;
+  int b = 2;
+  List tList = [];
+
+  void printls() {
+    tList = List.generate(a, (i) => List.filled(b, null, growable: false));
+    print(tList);
+  }
+
   @override
 
   void initState() {
@@ -198,6 +206,7 @@ class _QuizeInsideState extends State<QuizeInside> {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       startTimer();
       // getQuestions() ;
+      printls();
     });
   }
   bool? value=false;
@@ -251,7 +260,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                             Checkbox(
                               value: value,
                               onChanged: (bool? newValue) {
-                                value = newValue;
+                                tList[0][1] = newValue;
                               },
                             ),
                             Text(snapshot.data?[index]["ans1"] ?? ""),
@@ -262,7 +271,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                             Checkbox(
                               value: value,
                               onChanged: (bool? newValue) {
-                                value = newValue;
+                                tList[0][1] = newValue;
                               },
                             ),
                             Text(snapshot.data?[index]["ans2"] ?? ""),
@@ -273,7 +282,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                             Checkbox(
                               value: value,
                               onChanged: (bool? newValue) {
-                                value = newValue;
+                                tList[0][1] = newValue;
                               },
                             ),
                             Text(snapshot.data?[index]["ans3"] ?? ""),

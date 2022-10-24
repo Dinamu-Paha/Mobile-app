@@ -6,7 +6,7 @@ import 'package:dinamu_paha/Screens/Quizzes_&_Games.dart';
 import 'package:dinamu_paha/Screens/Sub_subtopic.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:dinamu_paha/Screens/studentDash.dart';
-import 'package:dinamu_paha/Screens/test.dart';
+import 'package:dinamu_paha/Screens/color_game.dart';
 import 'package:dinamu_paha/slidingGame/Board.dart';
 import 'package:flutter/material.dart';
 import 'Screens/quizeInside.dart';
@@ -23,6 +23,7 @@ import 'Screens/Quizzes_&_Games.dart';
 import 'Screens/Game_1.dart';
 import 'Screens/fogotPass.dart';
 import 'Screens/studentDash.dart';
+import 'package:dinamu_paha/Screens/color_game.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: QuizeInside(),
+      home: Subject_UI(),
     );
   }
+
 }
