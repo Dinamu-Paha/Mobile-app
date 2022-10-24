@@ -18,9 +18,9 @@ class QuizeInside extends StatefulWidget {
 class _QuizeInsideState extends State<QuizeInside> {
   String _quizeName = 'sampleQuize';
 
+  //for timer
   late Timer _timer;
   int _start = 1000;
-
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -41,19 +41,42 @@ class _QuizeInsideState extends State<QuizeInside> {
     );
   }
 
- int length=0;
+  // get questions
+  List _correctAnswerList  = new List.filled(30, null, growable: false);
+  List _selectAnswerList  = new List.filled(30, 5, growable: false);
 
   Future <List<dynamic>> getQuestions()async {
-
-
     final res = await http.get(
-        Uri.parse('http://192.168.43.90:8080/question/getquestion/36/37')
+        Uri.parse('http://192.168.173.35:8080/question/getquestionsofquiz/quiz1')
         // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
-    print(responsejson);
+    _globalIndex = responsejson.length;
+    // print(responsejson);
+    for(var j = 0;j< _globalIndex; j++){
+      _dbAnswers[j] = responsejson[j]["correctAns"];
+    }
+
+    activateButton();
 
     return responsejson;
+  }
+
+  // get correct marks
+  int _globalIndex = 0;
+  bool _buttonDisabled = false;
+  int _noOfCorrectAnswers = 0;
+  List _dbAnswers  = new List.filled(30, Null, growable: false);
+  int _finalMarks = 0;
+
+  activateButton(){
+    if(_globalIndex== null||_globalIndex== 0){
+      _buttonDisabled = false;
+    }else _buttonDisabled=true;
+  }
+
+  onSubmit(){
+
   }
 
   //Timeout popup
@@ -190,26 +213,15 @@ class _QuizeInsideState extends State<QuizeInside> {
     );
   }
 
-  int a = 3;
-  int b = 2;
-  List tList = [];
-
-  void printls() {
-    tList = List.generate(a, (i) => List.filled(b, null, growable: false));
-    print(tList);
-  }
-
   @override
 
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       startTimer();
-      // getQuestions() ;
-      printls();
     });
   }
-  bool? value=false;
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -239,75 +251,116 @@ class _QuizeInsideState extends State<QuizeInside> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Card(
-          child: FutureBuilder<List<dynamic>>(
-            future: getQuestions(),
-            builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot ){
-              if(snapshot.hasData){
-                return ListView.builder(itemCount: snapshot.data?.length ,itemBuilder: (context, index){
-                  return Card(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(snapshot.data?[index]["prescription"] ?? ""),
-                        Text(snapshot.data?[index]["postcription"] ?? ""),
+          child: Column(
+            children: [
+              FutureBuilder<List<dynamic>>(
+                future: getQuestions(),
+                builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot ){
+                  if(snapshot.hasData){
+                    return Expanded(
+                      child: ListView.builder(itemCount: snapshot.data?.length ,itemBuilder: (context, index){
+                        return Card(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(snapshot.data?[index]["prescription"] ?? ""),
+                              Text(snapshot.data?[index]["postcription"] ?? ""),
 
-                        SizedBox(height: 20,),
+                              SizedBox(height: 20,),
+
+                              RadioListTile(
+                                selected: false,
+                                value: 1,
+                                groupValue: _selectAnswerList[index],
+                                onChanged: ( value){
+                                  setState(() {
+                                    _selectAnswerList[index]= value;
+                                    // v1 = value;
+                                    // ind1 = index + 1;
+                                    _correctAnswerList[index] = value;
+                                    print(_correctAnswerList[index]);
+                                    print(_correctAnswerList);
+                                  });
+                                },
+                                title: Text(snapshot.data?[index]["ans1"] ?? ""),
+                              ),
+                              RadioListTile(
+                                selected: false,
+                                value: 2,
+                                groupValue: _selectAnswerList[index],
+                                onChanged: (value){
+                                  setState(() {
+                                    _selectAnswerList[index]= value;
+                                    // v1 = value;
+                                    // ind1 = index + 1;
+                                    _correctAnswerList[index] = value;
+                                    print(_correctAnswerList[index]);
+                                    print(_correctAnswerList);
+                                  });
+                                },
+                                title: Text(snapshot.data?[index]["ans2"] ?? ""),
+                              ),
+                              RadioListTile(
+                                selected: false,
+                                value: 3,
+                                groupValue: _selectAnswerList[index],
+                                onChanged: ( value){
+                                  setState(() {
+                                    _selectAnswerList[index]= value;
+                                    // v1 = value;
+                                    // ind1 = index + 1;
+                                    _correctAnswerList[index] = value;
+                                    print(_correctAnswerList[index]);
+                                    print(_correctAnswerList);
+                                  });
+                                },
+                                title: Text(snapshot.data?[index]["ans3"] ?? ""),
+                              ),
 
 
-                        Row(
-                          children: [
-                            Checkbox(
-                              value: value,
-                              onChanged: (bool? newValue) {
-                                tList[0][1] = newValue;
-                              },
-                            ),
-                            Text(snapshot.data?[index]["ans1"] ?? ""),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Checkbox(
-                              value: value,
-                              onChanged: (bool? newValue) {
-                                tList[0][1] = newValue;
-                              },
-                            ),
-                            Text(snapshot.data?[index]["ans2"] ?? ""),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Checkbox(
-                              value: value,
-                              onChanged: (bool? newValue) {
-                                tList[0][1] = newValue;
-                              },
-                            ),
-                            Text(snapshot.data?[index]["ans3"] ?? ""),
-                          ],
-                        ),
-                        SizedBox(height: 20,),
 
+                            ],
+                          ),
+                        );
+                      }),
+                    );
+                  } else return Container(
+                      child: Center(
+                          child: Text("Loading...")
+                      ),
+                    );
 
-                      ],
-                    ),
-                  );
-                });
+                },
+              ),
+              Row(
+                children: [
+                  ElevatedButton(
+                      onPressed: _buttonDisabled?(){
+                        print(_globalIndex);
+                        print(_selectAnswerList[0]);
+                        print(_dbAnswers[0]);
 
-                // child: ListTile(
-                //   tileColor: Colors.red,
-                //   title: Text(snapshot.data?[index]["prescription"] ?? "got null"),
-                // ),
-
-              } else return Container(
-                  child: Center(
-                      child: Text("Loading...")
-                  ),
-                );
-
-            },
+                        for(int i=0; i < _globalIndex;i++){
+                          if(_selectAnswerList[i]==_dbAnswers[i]){
+                            print("_noOfCorrectAnswers");
+                            ++_noOfCorrectAnswers;
+                          }
+                        }
+                        _finalMarks=(_noOfCorrectAnswers / _globalIndex*100).round();
+                        print(_noOfCorrectAnswers);
+                        print(_finalMarks);
+                        print("Elevated Button One pressed");
+                        _noOfCorrectAnswers=0;
+                        _finalMarks =0;
+                      }:null,
+                       child: Container(
+                    child: Text('Submit'),
+                  )
+                  )
+                ],
+              )
+            ],
           ),
         ),
       ),
