@@ -68,7 +68,7 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: SfPdfViewer.network('http://192.168.43.90:8080/get/image/3659.pdf'),
+        child: SfPdfViewer.network('http://192.168.43.90:8080/get/image/'+widget.sub_id+widget.sub_topic_id+'.pdf'),
     );
   }
 }
