@@ -38,17 +38,17 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
     Colors.cyan.withOpacity(0.8),
   ];
 
-  List sub_topic = [
-    'අප අවට සත්තු',
-    'අපේ යහපැවැත්ම',
-    'පොලොව හා අහස',
-    'අප හා වෙළඳ පොළ',
-    'පැලෑටි හා ගස්වැල්',
-    'අපි ලක් වැසියෝ',
-    'අප පරිහරණය කරන දේ',
-    'අපේ ආහාර',
-    'ආරක්ෂාව හා පරිස්සම',
-  ];
+  // List sub_topic = [
+  //   'අප අවට සත්තු',
+  //   'අපේ යහපැවැත්ම',
+  //   'පොලොව හා අහස',
+  //   'අප හා වෙළඳ පොළ',
+  //   'පැලෑටි හා ගස්වැල්',
+  //   'අපි ලක් වැසියෝ',
+  //   'අප පරිහරණය කරන දේ',
+  //   'අපේ ආහාර',
+  //   'ආරක්ෂාව හා පරිස්සම',
+  // ];
 
   int length = 0;
 
@@ -56,7 +56,7 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
 
     print('object');
     final res = await http.get(
-        Uri.parse("http://192.168.173.35:8080/subject/getsubtopic/"+sub_id.toString())
+        Uri.parse("http://192.168.43.90:8080/subject/getsubtopic/"+sub_id.toString())
       // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
@@ -115,22 +115,31 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                         return ListView.builder(itemCount: snapshot.data?.length ,itemBuilder: (context, index){
                           return Column(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                            Container(
-                                    height: 50,
-                                    width: 50,
-                                    alignment: Alignment.center,
-                                    margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      color: colors[index],
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) => lesson_UI(sub_id: snapshot.data?[index]["subject_id"], sub_topic_id: snapshot.data?[index]["sub_topic_id"],),
+                                    ));
+                              },
+                              child: Container(
+                                      height: 70,
+                                      width: MediaQuery.of(context).size.width-100,
+                                      alignment: Alignment.center,
+                                      margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        color: colors[index],
+                                      ),
+                                      child: Text(snapshot.data?[index]["sub_topic"] ?? "",
+                                        //sub_topic[index],
+                                        style: TextStyle(fontSize: 25),
+                                      ),
                                     ),
-                                    child: Text(snapshot.data?[index]["sub_topic"] ?? "",
-                                      //sub_topic[index],
-                                      style: TextStyle(fontSize: 25),
-                                    ),
-                                  )
+                            )
                               // Text(snapshot.data?[index]["sub_topic"] ?? ""),
                             ],
                           );

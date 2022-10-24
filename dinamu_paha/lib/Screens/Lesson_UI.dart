@@ -4,14 +4,18 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 
 class lesson_UI extends StatefulWidget {
-  const lesson_UI({Key? key}) : super(key: key);
+  var sub_id;
+  var sub_topic_id;
+  lesson_UI({Key? key, this.sub_id, this.sub_topic_id }) : super(key: key);
 
   @override
   State<lesson_UI> createState() => _lesson_UIState();
 }
 
 class _lesson_UIState extends State<lesson_UI> {
+
   @override
+
   Widget build(BuildContext context) {
     return SafeArea(
         child: DefaultTabController(
@@ -40,7 +44,7 @@ class _lesson_UIState extends State<lesson_UI> {
             ),
             body: TabBarView(
               children: [
-                FirstScreen(),
+                FirstScreen(sub_id : widget.sub_id, sub_topic_id : widget.sub_topic_id),
                 SecondScreen(),
                 ThirdScreen(),
               ],
@@ -52,7 +56,9 @@ class _lesson_UIState extends State<lesson_UI> {
 }
 
 class FirstScreen extends StatefulWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+  var sub_id;
+  var sub_topic_id;
+  FirstScreen({Key? key, this.sub_id, this.sub_topic_id}) : super(key: key);
 
   @override
   State<FirstScreen> createState() => _FirstScreenState();
@@ -62,7 +68,7 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: SfPdfViewer.asset('assets/Pdf/Grade_5_apa_awata_sathun.pdf'),
+        child: SfPdfViewer.network('localhost:8080/get/image/3659.pdf'),
     );
   }
 }

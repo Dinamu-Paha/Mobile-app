@@ -64,9 +64,8 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
   //   print(list1);
   // }
 
-
-
   @override
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -104,7 +103,7 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name1,image: image1, sub_id: 36,),
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name1,image: image1, sub_id: 37,),
                                 )
                             );
                           },
@@ -121,7 +120,7 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name2,image: image2, sub_id: 30,),
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name2,image: image2, sub_id: 38,),
                                 )
                             );
                           },
@@ -139,7 +138,7 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name3, image: image3, sub_id: 20,),
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name3, image: image3, sub_id: 39,),
                                 )
                             );
                           },
@@ -156,7 +155,7 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject:sub_name4, image: image4, sub_id: 10,),
+                                  builder: (BuildContext context) => SubTopic_UI(subject:sub_name4, image: image4, sub_id: 36,),
                                 ));
                           },
                           child: Container(
