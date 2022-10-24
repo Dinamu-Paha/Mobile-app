@@ -1,11 +1,16 @@
+import 'dart:convert';
 import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 
 import 'Lesson_UI.dart';
 
 class SubTopic_UI extends StatefulWidget {
   var subject;
-  SubTopic_UI({Key? key, this.subject}) : super(key: key);
+  var image;
+  var sub_id;
+  SubTopic_UI({Key? key, this.subject, this.image, this.sub_id}) : super(key: key);
 
   @override
   State<SubTopic_UI> createState() => _SubTopic_UIState();
@@ -44,6 +49,40 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
     'අපේ ආහාර',
     'ආරක්ෂාව හා පරිස්සම',
   ];
+  // Future save(sub_id) async {
+  //   final res = await http.get(
+  //       Uri.parse('http://192.168.56.1:8080/subject/getsubtopic/'+sub_id.toString())
+  //   );
+  //
+  // }
+  //
+
+  List<dynamic> list = <dynamic>[];
+  List<String> list1 = <String>[];
+  int length = 0;
+
+  Future save(sub_id) async {
+    final res = await http.get(
+        Uri.parse('http://192.168.56.1:8080/subject/getsubtopic/'+sub_id.toString())
+    );
+
+    List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
+    print(responsejson);
+    list = responsejson;
+    for(var i in list){
+      list1.add(i['sub_topic']);
+    }
+    print(list1);
+    length = list1.length;
+    print(length);
+  }
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      save(widget.sub_id);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +114,7 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                   height: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(
-                          "assets/images/subtopic_parisaraya_BK.jpg"),
+                      image: AssetImage(widget.image),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -102,11 +140,12 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                           ),
                           child: Text(
                             sub_topic[index],
+                            //sub_topic[index],
                             style: TextStyle(fontSize: 25),
                           ),
                         );
                       },
-                      childCount: 9,
+                      childCount: length,
                     ),
                     shrinkWrap: true,
                     padding: EdgeInsets.all(5),

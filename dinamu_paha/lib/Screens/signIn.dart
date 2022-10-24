@@ -67,6 +67,7 @@ class _SignInPageState extends State<SignInPage> {
     }
   }
 
+  //login request
   Future save() async {
     final res = await http.post(
         Uri.parse('http://192.168.56.1:8080/user/login'),
@@ -96,6 +97,7 @@ class _SignInPageState extends State<SignInPage> {
     // String? jwt = await storage.read(key: 'jwt');
     // print(jwt);
   }
+  //login request end
 
   //Login function call from sign in
   LoginValidator(bool x) {

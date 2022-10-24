@@ -1,5 +1,6 @@
 import 'package:dinamu_paha/Screens/subject_UI.dart';
 import 'package:flutter/material.dart';
+import 'package:dinamu_paha/Component/colors.dart';
 
 class Quiz_Games extends StatefulWidget {
   const Quiz_Games({Key? key}) : super(key: key);
@@ -28,27 +29,32 @@ class _Quiz_GamesState extends State<Quiz_Games> {
               },
             ),
           ),
-          body: GridView.count(
-              crossAxisCount: 3,
-            children: List.generate(30, (index) => Card(
-              elevation: 10,
-              margin: EdgeInsets.all(7),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              color: Colors.tealAccent.withOpacity(0.5),
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/img_5.png', width: 40, height: 40,),
-                    Text("Qiuz And Games",style: TextStyle(),),
-                    Text("$index"),
-                  ],
-                )
-              ),
+          body: Container(
+            decoration: BoxDecoration(
+              color: AppColor.appBColor.withOpacity(0.3),
             ),
+            child: GridView.count(
+                crossAxisCount: 3,
+              children: List.generate(30, (index) => Card(
+                elevation: 10,
+                margin: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                color: Colors.tealAccent.withOpacity(0.5),
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/img_5.png', width: 40, height: 40,),
+                      Text("Qiuz And Games",style: TextStyle(),),
+                      Text("$index"),
+                    ],
+                  )
+                ),
+              ),
+              ),
             ),
           ),
         )

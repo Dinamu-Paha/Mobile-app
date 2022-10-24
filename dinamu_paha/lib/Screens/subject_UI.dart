@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:dinamu_paha/Screens/Quizzes_&_Games.dart';
 import 'package:dinamu_paha/Screens/Sub_topic_UI.dart';
 import 'package:dinamu_paha/Screens/studentDash.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_background/animated_background.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_sinhala/flutter_sinhala.dart';
+
 
 class Subject_UI extends StatefulWidget {
   const Subject_UI({Key? key}) : super(key: key);
@@ -27,7 +32,39 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
   );
 
   var sub_name1 = "සිංහල";
+  var sub_name2 = 'ගණිතය';
+  var sub_name3 = 'ඉංග්‍රීසි';
   var sub_name4 = "පරිසරය";
+  var sub_name5 = 'බුද්ධි පරීක්ෂණය';
+
+  get password => null;
+
+  get email => null;
+
+  var image1 = 'assets/images/sinhala_BK.png';
+  var image2 = 'assets/images/maths_BK.webp';
+  var image3 = 'assets/images/english_BK.jpg';
+  var image4 = 'assets/images/subtopic_parisaraya_BK.jpg';
+  var image5 = 'assets/images/general_BK.webp';
+
+  // List<dynamic> list = <dynamic>[];
+  // List<String> list1 = <String>[];
+  //
+  // Future save(sub_id) async {
+  //   final res = await http.get(
+  //       Uri.parse('http://192.168.56.1:8080/subject/getsubtopic/'+sub_id.toString())
+  //   );
+  //
+  //   List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
+  //   print(responsejson);
+  //   list = responsejson;
+  //   for(var i in list){
+  //     list1.add(i['sub_topic']);
+  //   }
+  //   print(list1);
+  // }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +100,13 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                         SizedBox(height: 40,),
                         GestureDetector(
                           onTap: (){
+                            //save(36);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name1,),
-                                ));
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name1,image: image1, sub_id: 36,),
+                                )
+                            );
                           },
                           child: Container(
                             width: 80,
@@ -78,6 +117,14 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                           ),
                         ),
                         GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name2,image: image2,),
+                                )
+                            );
+                          },
                           child: Container(
                             width: 80,
                             height: 70,
@@ -88,6 +135,14 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                         ),
 
                         GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name3, image: image3,),
+                                )
+                            );
+                          },
                           child: Container(
                             width: 80,
                             height: 70,
@@ -101,7 +156,7 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject:sub_name4),
+                                  builder: (BuildContext context) => SubTopic_UI(subject:sub_name4, image: image4,),
                                 ));
                           },
                           child: Container(
@@ -113,6 +168,14 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                           ),
                         ),
                         GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name5, image: image5,),
+                                )
+                            );
+                          },
                           child: Container(
                             width: 80,
                             height: 70,
@@ -158,3 +221,27 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
     );
   }
 }
+
+// selectimage(sub){
+//   if(sub == 'සිංහල'){
+//     var image = 'assets/images/sinhala_BK.png';
+//     return image;
+//   }
+//   else if(sub == 'ගණිතය'){
+//     var image = 'assets/images/maths_BK.webp';
+//     return image;
+//   }
+//   else if(sub == 'ඉංග්‍රීසි'){
+//     var image = 'assets/images/english_BK.jpg';
+//     return image;
+//   }
+//   else if(sub == 'පරිසරය'){
+//     var image = 'assets/images/subtopic_parisaraya_BK.jpg';
+//     return image;
+//   }
+//   else
+//   {
+//     var image = 'assets/images/general_BK.webp';
+//     return image;
+//   }
+// }

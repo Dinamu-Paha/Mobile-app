@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: StudentProfile(),
+      home: Subject_UI(),
     );
   }
 }
