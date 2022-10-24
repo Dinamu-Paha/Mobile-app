@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: QuizeInside(),
+      home: Quiz_Games(),
     );
   }
 

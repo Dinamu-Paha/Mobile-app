@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
 import '../Component/colors.dart';
 import 'Quizzes_&_Games.dart';
 import 'package:http/http.dart' as http;
 
 
 class QuizeInside extends StatefulWidget {
-  const QuizeInside({Key? key}) : super(key: key);
+  var quizName;
+   QuizeInside({Key? key, this.quizName}) : super(key: key);
 
   @override
   State<QuizeInside> createState() => _QuizeInsideState();
@@ -47,7 +46,7 @@ class _QuizeInsideState extends State<QuizeInside> {
 
   Future <List<dynamic>> getQuestions()async {
     final res = await http.get(
-        Uri.parse('http://192.168.43.90:8080/question/getquestionsofquiz/quiz1')
+        Uri.parse('http://192.168.43.90:8080/question/getquestionsofquiz/'+widget.quizName.toString())
         // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
