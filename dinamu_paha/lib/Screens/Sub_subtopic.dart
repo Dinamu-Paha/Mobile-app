@@ -76,7 +76,7 @@ class _Sub_Subtopic_UIState extends State<Sub_Subtopic_UI> with SingleTickerProv
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) => SubTopic_UI(subject: "පරිසරය",),
+                    builder: (BuildContext context) => SubTopic_UI(subject: "පරිසරය", sub_id: 30,),
                   ));
             },
           ),

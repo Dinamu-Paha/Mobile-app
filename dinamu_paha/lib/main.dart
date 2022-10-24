@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: QuizeInside(),
+      home: SubTopic_UI(subject:"sub_name4", image: "assets/images/subtopic_parisaraya_BK.jpg",sub_id: 36),
     );
   }
 }

@@ -10,7 +10,7 @@ class SubTopic_UI extends StatefulWidget {
   var subject;
   var image;
   var sub_id;
-  SubTopic_UI({Key? key, this.subject, this.image, this.sub_id}) : super(key: key);
+  SubTopic_UI({Key? key, this.subject, this.image,  this.sub_id}) : super(key: key);
 
   @override
   State<SubTopic_UI> createState() => _SubTopic_UIState();
@@ -49,40 +49,22 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
     'අපේ ආහාර',
     'ආරක්ෂාව හා පරිස්සම',
   ];
-  // Future save(sub_id) async {
-  //   final res = await http.get(
-  //       Uri.parse('http://192.168.56.1:8080/subject/getsubtopic/'+sub_id.toString())
-  //   );
-  //
-  // }
-  //
 
-  List<dynamic> list = <dynamic>[];
-  List<String> list1 = <String>[];
   int length = 0;
 
-  Future save(sub_id) async {
-    final res = await http.get(
-        Uri.parse('http://192.168.56.1:8080/subject/getsubtopic/'+sub_id.toString())
-    );
+  Future <List<dynamic>> getSubtopics(sub_id)async {
 
+    print('object');
+    final res = await http.get(
+        Uri.parse("http://192.168.173.35:8080/subject/getsubtopic/"+sub_id.toString())
+      // headers: {'Content-Type': 'application/json'}
+    );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
     print(responsejson);
-    list = responsejson;
-    for(var i in list){
-      list1.add(i['sub_topic']);
-    }
-    print(list1);
-    length = list1.length;
-    print(length);
+
+    return responsejson;
   }
 
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      save(widget.sub_id);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,31 +108,67 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                   decoration: BoxDecoration(
                     color: Colors.cyanAccent.withOpacity(0.3),
                   ),
-                  child: ListView.custom(
-                    childrenDelegate: SliverChildBuilderDelegate(
-                      (BuildContext, index) {
-                        return Container(
-                          height: 50,
-                          width: 50,
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: colors[index],
-                          ),
-                          child: Text(
-                            sub_topic[index],
-                            //sub_topic[index],
-                            style: TextStyle(fontSize: 25),
-                          ),
-                        );
-                      },
-                      childCount: length,
-                    ),
-                    shrinkWrap: true,
-                    padding: EdgeInsets.all(5),
-                    scrollDirection: Axis.vertical,
-                  ),
+                  child: FutureBuilder<List<dynamic>>(
+                    future: getSubtopics(widget.sub_id),
+                    builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot ){
+                      if(snapshot.hasData){
+                        return ListView.builder(itemCount: snapshot.data?.length ,itemBuilder: (context, index){
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                            Container(
+                                    height: 50,
+                                    width: 50,
+                                    alignment: Alignment.center,
+                                    margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      color: colors[index],
+                                    ),
+                                    child: Text(snapshot.data?[index]["sub_topic"] ?? "",
+                                      //sub_topic[index],
+                                      style: TextStyle(fontSize: 25),
+                                    ),
+                                  )
+                              // Text(snapshot.data?[index]["sub_topic"] ?? ""),
+                            ],
+                          );
+                        });
+
+                      } else return Container(
+                        child: Center(
+                            child: Text("Loading...")
+                        ),
+                      );
+
+                    },
+                  )
+                  // ListView.custom(
+                  //   childrenDelegate: SliverChildBuilderDelegate(
+                  //     (BuildContext, index) {
+                  //       return Container(
+                  //         height: 50,
+                  //         width: 50,
+                  //         alignment: Alignment.center,
+                  //         margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                  //         decoration: BoxDecoration(
+                  //           borderRadius: BorderRadius.circular(25),
+                  //           color: colors[index],
+                  //         ),
+                  //         child: Text(
+                  //           sub_topic[index],
+                  //           //sub_topic[index],
+                  //           style: TextStyle(fontSize: 25),
+                  //         ),
+                  //       );
+                  //     },
+                  //     childCount: length,
+                  //   ),
+                  //   shrinkWrap: true,
+                  //   padding: EdgeInsets.all(5),
+                  //   scrollDirection: Axis.vertical,
+                  // ),
                 ),
               ],
             ),

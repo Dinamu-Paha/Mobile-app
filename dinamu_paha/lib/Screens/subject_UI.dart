@@ -121,7 +121,7 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name2,image: image2,),
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name2,image: image2, sub_id: 30,),
                                 )
                             );
                           },
@@ -139,7 +139,7 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name3, image: image3,),
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name3, image: image3, sub_id: 20,),
                                 )
                             );
                           },
@@ -156,7 +156,7 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject:sub_name4, image: image4,),
+                                  builder: (BuildContext context) => SubTopic_UI(subject:sub_name4, image: image4, sub_id: 10,),
                                 ));
                           },
                           child: Container(
@@ -172,7 +172,7 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name5, image: image5,),
+                                  builder: (BuildContext context) => SubTopic_UI(subject: sub_name5, image: image5, sub_id: 40,),
                                 )
                             );
                           },
