@@ -1,4 +1,7 @@
+import 'package:dinamu_paha/Screens/Game_1.dart';
+import 'package:dinamu_paha/Screens/color_game.dart';
 import 'package:dinamu_paha/Screens/subject_UI.dart';
+import 'package:dinamu_paha/slidingGame/Board.dart';
 import 'package:flutter/material.dart';
 import 'package:dinamu_paha/Component/colors.dart';
 
@@ -100,7 +103,148 @@ class Games extends StatefulWidget {
 class _GamesState extends State<Games> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: AppColor.appBColor.withOpacity(0.3),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 50,),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => Game1(title: 'First Game',),
+                    )
+                );
+              },
+              child: Card(
+                elevation: 20,
+                shadowColor: Colors.black,
+                color: Colors.lightBlueAccent.withOpacity(0.5),
+                child: Container(
+                  height: MediaQuery.of(context).size.height-520,
+                  width: MediaQuery.of(context).size.width-100,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20,),
+                      Container(
+                        height: MediaQuery.of(context).size.height-650,
+                        width: MediaQuery.of(context).size.width-150,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/xoxo.png'),
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      SizedBox(
+                        child: Text('XOXO PLAY', style: TextStyle(fontSize: 36, fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, color: Colors.white),),
+                      ),
+                      SizedBox(height: 30,),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 50,),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => SlidingGame(),
+                    )
+                );
+              },
+              child: Card(
+                elevation: 20,
+                shadowColor: Colors.black,
+                color: Colors.tealAccent.withOpacity(0.5),
+                child: Container(
+                  height: MediaQuery.of(context).size.height-520,
+                  width: MediaQuery.of(context).size.width-100,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20,),
+                      Container(
+                        height: MediaQuery.of(context).size.height-650,
+                        width: MediaQuery.of(context).size.width-150,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/sliding.webp'),
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      SizedBox(
+                        child: Text('SLIDING PUZZLE', style: TextStyle(fontSize: 36, fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, color: Colors.white),),
+                      ),
+                      SizedBox(height: 30,),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 50,),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => ColorGame(),
+                    )
+                );
+              },
+              child: Card(
+                elevation: 20,
+                shadowColor: Colors.black,
+                color: Colors.deepPurpleAccent.withOpacity(0.5),
+                child: Container(
+                  height: MediaQuery.of(context).size.height-520,
+                  width: MediaQuery.of(context).size.width-100,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20,),
+                      Container(
+                        height: MediaQuery.of(context).size.height-650,
+                        width: MediaQuery.of(context).size.width-150,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/Colorgame.png'),
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      SizedBox(
+                        child: Text('MATCH COLOR', style: TextStyle(fontSize: 36, fontFamily: 'Poppins', fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.white),),
+                      ),
+                      SizedBox(height: 30,),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 50,),
+          ],
+        ),
+      ),
+    );
   }
 }
 

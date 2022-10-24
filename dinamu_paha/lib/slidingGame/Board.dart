@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dinamu_paha/Screens/Quizzes_&_Games.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:flutter/material.dart';
 import '../Screens/Sub_topic_UI.dart';
@@ -44,7 +45,7 @@ class _SlidingGameState extends State<SlidingGame> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => SignInPage(),
+                  builder: (BuildContext context) => Quiz_Games(),
                 ));
           },
         ),

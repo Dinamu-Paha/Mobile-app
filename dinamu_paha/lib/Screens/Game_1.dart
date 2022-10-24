@@ -1,15 +1,16 @@
+import 'package:dinamu_paha/Component/colors.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class Game1 extends StatefulWidget {
+  const Game1({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Game1> createState() => _Game1State();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _Game1State extends State<Game1> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -39,68 +40,79 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height-400,
-            width: MediaQuery.of(context).size.width,
-            child: GridView.count(
-              crossAxisCount: 3,
-              children: [
-                for (var i = 0; i < 9; i++)
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.lightBlueAccent.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.3),
-                          spreadRadius: 2,
-                          blurRadius: 10,
-                          offset: Offset(5.0, 5.0), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    margin: EdgeInsets.all(7),
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          tiles[i] = 1;
-                          runAi();
-                        });
-                      },
-                      child: Center(
-                          child: Text(tiles[i] == 0
-                              ? ''
-                              : tiles[i] == 1
-                              ? 'X'
-                              : 'O',style: TextStyle(fontSize: 30),),
+      body: Container(
+        color: Colors.grey.withOpacity(0.6),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height-400,
+              width: MediaQuery.of(context).size.width,
+              child: GridView.count(
+                crossAxisCount: 3,
+                children: [
+                  for (var i = 0; i < 9; i++)
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.lightBlueAccent.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            offset: Offset(5.0, 5.0), // changes position of shadow
+                          ),
+                        ],
                       ),
-                    ),
-                  )
-              ],
+                      margin: EdgeInsets.all(7),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            tiles[i] = 1;
+                            runAi();
+                          });
+                        },
+                        child: Center(
+                            child: Text(tiles[i] == 0
+                                ? ''
+                                : tiles[i] == 1
+                                ? 'X'
+                                : 'O',style: TextStyle(fontSize: 30),),
+                        ),
+                      ),
+                    )
+                ],
+              ),
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(isWinning(1, tiles)
-                  ? 'You won!'
-                  : isWinning(2, tiles)
-                  ? 'You lost!'
-                  : 'Your move'),
-              OutlinedButton(
-                  onPressed: () {
-                    setState(() {
-                      tiles = List.filled(9, 0);
-                    });
-                  },
-                  child: Text('Restart'))
-            ],
-          )
-        ],
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(height: 50,),
+                Text(isWinning(1, tiles)
+                    ? 'You won!'
+                    : isWinning(2, tiles)
+                    ? 'You lost!'
+                    : 'Your move', style: TextStyle(fontSize: 25, fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                SizedBox(height: 30,),
+                OutlinedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll<Color>(Colors.white),
+                      elevation: ButtonStyleButton.allOrNull(0.0),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.fromLTRB(40, 20, 40, 20)),
+                  ),
+                    onPressed: () {
+                      setState(() {
+                        tiles = List.filled(9, 0);
+                      });
+                    },
+                    child: Text('Restart', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40, fontFamily: 'poppins', fontStyle: FontStyle.italic),))
+              ],
+            )
+          ],
+        ),
       ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: _incrementCounter,
