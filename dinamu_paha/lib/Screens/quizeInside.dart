@@ -200,6 +200,7 @@ class _QuizeInsideState extends State<QuizeInside> {
       // getQuestions() ;
     });
   }
+  bool? value=false;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -234,11 +235,62 @@ class _QuizeInsideState extends State<QuizeInside> {
             builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot ){
               if(snapshot.hasData){
                 return ListView.builder(itemCount: snapshot.data?.length ,itemBuilder: (context, index){
-                  return ListTile(
-                    tileColor: Colors.red,
-                    title: Text(snapshot.data?[index]["prescription"] ?? "got null"),
+                  return Card(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(snapshot.data?[index]["prescription"] ?? ""),
+                        Text(snapshot.data?[index]["postcription"] ?? ""),
+
+                        SizedBox(height: 20,),
+
+
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: value,
+                              onChanged: (bool? newValue) {
+                                value = newValue;
+                              },
+                            ),
+                            Text(snapshot.data?[index]["ans1"] ?? ""),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: value,
+                              onChanged: (bool? newValue) {
+                                value = newValue;
+                              },
+                            ),
+                            Text(snapshot.data?[index]["ans2"] ?? ""),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: value,
+                              onChanged: (bool? newValue) {
+                                value = newValue;
+                              },
+                            ),
+                            Text(snapshot.data?[index]["ans3"] ?? ""),
+                          ],
+                        ),
+                        SizedBox(height: 20,),
+
+
+                      ],
+                    ),
                   );
                 });
+
+                // child: ListTile(
+                //   tileColor: Colors.red,
+                //   title: Text(snapshot.data?[index]["prescription"] ?? "got null"),
+                // ),
 
               } else return Container(
                   child: Center(
