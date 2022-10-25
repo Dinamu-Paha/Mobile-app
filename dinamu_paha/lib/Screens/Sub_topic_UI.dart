@@ -122,7 +122,7 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (BuildContext context) => lesson_UI(sub_id: snapshot.data?[index]["subject_id"], sub_topic_id: snapshot.data?[index]["sub_topic_id"],),
+                                      builder: (BuildContext context) => lesson_UI(sub_topic: snapshot.data?[index]["sub_topic"],sub_id: snapshot.data?[index]["subject_id"], sub_topic_id: snapshot.data?[index]["sub_topic_id"],),
                                     ));
                               },
                               child: Container(

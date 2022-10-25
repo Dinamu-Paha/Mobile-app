@@ -13,7 +13,8 @@ import 'package:http/http.dart' as http;
 class lesson_UI extends StatefulWidget {
   var sub_id;
   var sub_topic_id;
-  lesson_UI({Key? key, this.sub_id, this.sub_topic_id }) : super(key: key);
+  var sub_topic;
+  lesson_UI({Key? key,this.sub_topic, this.sub_id, this.sub_topic_id }) : super(key: key);
 
   @override
   State<lesson_UI> createState() => _lesson_UIState();
@@ -30,7 +31,7 @@ class _lesson_UIState extends State<lesson_UI> {
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.deepPurple,
-              title: Text('දිනමු පහ - අප අවට සත්තු',),
+              title: Text('දිනමු පහ - '+widget.sub_topic,),
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: (){
@@ -464,7 +465,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
 
   Future <List<dynamic>> getQuestions()async {
     final res = await http.get(
-        Uri.parse('http://ec2-54-215-42-250.us-west-1.compute.amazonaws.com:8080/question/getquestionsofquiz/quiz1')
+        Uri.parse('http://ec2-54-215-42-250.us-west-1.compute.amazonaws.com:8080/question/getquestionofpastpaperandsubtopic/'+widget.sub_topic_id.toString())
       // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
