@@ -46,7 +46,7 @@ class _PPyearState extends State<PPyear> {
 
   Future <List<dynamic>> getQuestions()async {
     final res = await http.get(
-        Uri.parse('http://192.168.43.90:8080/question/getquestionsofquiz/'+widget.year.toString())
+        Uri.parse('http://192.168.43.90:8080/question/getpastpaperofyear/'+widget.year.toString())
       // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));

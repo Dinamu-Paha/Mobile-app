@@ -23,7 +23,7 @@ class Past_papers extends StatefulWidget {
 class _Past_papersState extends State<Past_papers> {
 
   Future <List<dynamic>> getQuizzers()async {
-    final res = await http.get(Uri.parse('http://192.168.43.90:8080/question/getquizzes')
+    final res = await http.get(Uri.parse('http://192.168.43.90:8080/question/getpastpaper')
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
     return responsejson;
@@ -62,7 +62,7 @@ class _Past_papersState extends State<Past_papers> {
         Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (BuildContext context) => PPyear(year: 2018,),
+          builder: (BuildContext context) => PPyear(year: snapshot.data?[index].toString() ?? "",),
         )
         );
         },
@@ -84,7 +84,7 @@ class _Past_papersState extends State<Past_papers> {
         child: AnimatedTextKit(
         isRepeatingAnimation: false,
         animatedTexts: [
-        TyperAnimatedText(snapshot.data?[index] ?? ""
+        TyperAnimatedText(snapshot.data?[index].toString() ?? ""
         ,speed: Duration(milliseconds: 100)),
         ]
         ),
