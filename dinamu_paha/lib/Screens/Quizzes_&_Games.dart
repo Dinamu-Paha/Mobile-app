@@ -8,6 +8,7 @@ import 'package:dinamu_paha/slidingGame/Board.dart';
 import 'package:flutter/material.dart';
 import 'package:dinamu_paha/Component/colors.dart';
 import 'package:http/http.dart' as http;
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class Quiz_Games extends StatefulWidget {
   var quizName;
@@ -69,7 +70,7 @@ class _QuizState extends State<Quiz> {
 
   //getQuizeNames
   Future <List<dynamic>> getQuizzers()async {
-    final res = await http.get(Uri.parse('http://192.168.173.35:8080/question/getquizzes')
+    final res = await http.get(Uri.parse('http://192.168.43.90:8080/question/getquizzes')
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
     return responsejson;
@@ -80,6 +81,7 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
         decoration: BoxDecoration(
           color: AppColor.appBColor.withOpacity(0.3),
         ),
@@ -87,32 +89,60 @@ class _QuizState extends State<Quiz> {
           future: getQuizzers(),
           builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot ){
             if(snapshot.hasData){
-              return Expanded(
-                child: ListView.builder(itemCount: snapshot.data?.length ,itemBuilder: (context, index){
-                  return Card(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GestureDetector(
-                          onTap: (){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) => QuizeInside(quizName: snapshot.data?[index],),
-                                )
-                            );
-                          },
-                          child: Container(
-                              child: Card(
-                                  child: Text(snapshot.data?[index] ?? "")
-                              )
-                          ),
+              return Row(
+                children: [
+                  SizedBox(width: 30,),
+                  Expanded(
+                    child: ListView.builder(itemCount: snapshot.data?.length ,itemBuilder: (context, index){
+                      return Container(
+                        margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) => QuizeInside(quizName: snapshot.data?[index],),
+                                    )
+                                );
+                              },
+                              child: Container(
+                                height: 70,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Card(
+                                    elevation: 30,
+                                      //child: Center(child: Text(snapshot.data?[index] ?? "", style: TextStyle(fontSize: 40, fontFamily: 'poppins', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),)),
+                                    child: Center(
+                                      child: DefaultTextStyle(
+                                        style: const TextStyle(
+                                            fontSize: 40,
+                                            fontFamily: 'poppins',
+                                            fontStyle: FontStyle.italic,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                        ),
+                                        child: AnimatedTextKit(
+                                            isRepeatingAnimation: false,
+                                            animatedTexts: [
+                                              TyperAnimatedText(snapshot.data?[index] ?? ""
+                                                  ,speed: Duration(milliseconds: 100)),
+                                            ]
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                }),
+                      );
+                    }),
+                  ),
+                  SizedBox(width: 30,),
+                ],
               );
             } else return Container(
               child: Center(

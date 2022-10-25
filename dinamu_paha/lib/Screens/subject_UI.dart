@@ -8,6 +8,8 @@ import 'package:animated_background/animated_background.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_sinhala/flutter_sinhala.dart';
 
+import 'Past_Papers.dart';
+
 
 class Subject_UI extends StatefulWidget {
   const Subject_UI({Key? key}) : super(key: key);
@@ -200,6 +202,13 @@ class _Subject_UIState extends State<Subject_UI> with SingleTickerProviderStateM
                           ),
                         ),
                         GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => Past_papers(),
+                                ));
+                          },
                           child: Container(
                             width: 100,
                             height: 70,

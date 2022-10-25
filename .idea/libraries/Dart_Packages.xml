@@ -16,6 +16,13 @@
             </list>
           </value>
         </entry>
+        <entry key="animated_text_kit">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../Program Files/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.2.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="async">
           <value>
             <list>
@@ -679,6 +686,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../../../../Program Files/flutter/.pub-cache/hosted/pub.dartlang.org/advance_pdf_viewer-2.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../Program Files/flutter/.pub-cache/hosted/pub.dartlang.org/animated_background-2.0.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.2.2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../Program Files/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.9.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../Program Files/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-1.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../Program Files/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers_android-1.0.1/lib" />

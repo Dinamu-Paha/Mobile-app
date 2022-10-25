@@ -6,15 +6,15 @@ import 'Quizzes_&_Games.dart';
 import 'package:http/http.dart' as http;
 
 
-class QuizeInside extends StatefulWidget {
-  var quizName;
-   QuizeInside({Key? key, this.quizName}) : super(key: key);
+class PPyear extends StatefulWidget {
+  var year;
+  PPyear({Key? key, this.year}) : super(key: key);
 
   @override
-  State<QuizeInside> createState() => _QuizeInsideState();
+  State<PPyear> createState() => _PPyearState();
 }
 
-class _QuizeInsideState extends State<QuizeInside> {
+class _PPyearState extends State<PPyear> {
   String _quizeName = 'sampleQuize';
 
   //for timer
@@ -46,8 +46,8 @@ class _QuizeInsideState extends State<QuizeInside> {
 
   Future <List<dynamic>> getQuestions()async {
     final res = await http.get(
-        Uri.parse('http://192.168.43.90:8080/question/getquestionsofquiz/'+widget.quizName.toString())
-        // headers: {'Content-Type': 'application/json'}
+        Uri.parse('http://192.168.43.90:8080/question/getquestionsofquiz/'+widget.year.toString())
+      // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
     _globalIndex = responsejson.length;
@@ -225,10 +225,10 @@ class _QuizeInsideState extends State<QuizeInside> {
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
-            child: Icon(Icons.arrow_back),
-                onTap: (){
-                  openDialogBackConfirm();
-                },
+          child: Icon(Icons.arrow_back),
+          onTap: (){
+            openDialogBackConfirm();
+          },
         ),
         title: Text(_quizeName, style: TextStyle(fontFamily: "poppins"),),
         actions: [
@@ -239,7 +239,7 @@ class _QuizeInsideState extends State<QuizeInside> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(((_start/60).floor().toString()+ " : " + (_start%60).toString()),style: TextStyle(
-                  fontSize: 30
+                    fontSize: 30
                 ),),
               ],
             ),
@@ -325,10 +325,10 @@ class _QuizeInsideState extends State<QuizeInside> {
                       }),
                     );
                   } else return Container(
-                      child: Center(
-                          child: Text("Loading...")
-                      ),
-                    );
+                    child: Center(
+                        child: Text("Loading...")
+                    ),
+                  );
 
                 },
               ),
@@ -354,10 +354,10 @@ class _QuizeInsideState extends State<QuizeInside> {
                         _noOfCorrectAnswers=0;
                         _finalMarks =0;
                       }:null,
-                       child: Container(
-                         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: Text('Submit', style: TextStyle(fontFamily: 'poppins', fontSize: 25),),
-                  )
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Text('Submit', style: TextStyle(fontFamily: 'poppins', fontSize: 25),),
+                      )
                   )
                 ],
               ),

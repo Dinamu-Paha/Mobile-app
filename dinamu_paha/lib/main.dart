@@ -9,6 +9,7 @@ import 'package:dinamu_paha/Screens/studentDash.dart';
 import 'package:dinamu_paha/Screens/color_game.dart';
 import 'package:dinamu_paha/slidingGame/Board.dart';
 import 'package:flutter/material.dart';
+import 'Screens/Past_Papers.dart';
 import 'Screens/quizeInside.dart';
 import 'Screens/singUp.dart';
 import 'Screens/studentProfile.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: Quiz_Games(),
+      home: Subject_UI(),
     );
   }
 
