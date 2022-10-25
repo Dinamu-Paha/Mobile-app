@@ -55,7 +55,7 @@ class _SignInPageState extends State<SignInPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (BuildContext context) => admin_home(),
+            builder: (BuildContext context) => SignInPage(),
           ));
     }
     else if (x == true) {

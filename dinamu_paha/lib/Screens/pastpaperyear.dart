@@ -75,10 +75,6 @@ class _PPyearState extends State<PPyear> {
     }else _buttonDisabled=true;
   }
 
-  onSubmit(){
-
-  }
-
   //Timeout popup
   Future<void> openDialog() async {
     return showDialog<void>(
@@ -110,6 +106,7 @@ class _PPyearState extends State<PPyear> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder: (BuildContext context) => Quiz_Games(),));
+                      deactivate();
                     },
                     child: Container(
                       width: 125,
@@ -188,6 +185,8 @@ class _PPyearState extends State<PPyear> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(builder: (BuildContext context) => Past_papers(),));
+                        deactivate();
+
                       },
                       child: Container(
                         width: 80,

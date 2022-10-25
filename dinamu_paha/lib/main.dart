@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "KidZone",
         primarySwatch: Colors.blue,
       ),
-      home: Subject_UI(),
+      home: SignInPage(),
     );
   }
 

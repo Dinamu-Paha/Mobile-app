@@ -35,11 +35,12 @@ class _lesson_UIState extends State<lesson_UI> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: (){
-                  Navigator.push(
+                  Navigator.pop(
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) => SubTopic_UI(sub_id: 37,),
                       ));
+                  // deactivate();
                 },
               ),
               bottom: TabBar(
