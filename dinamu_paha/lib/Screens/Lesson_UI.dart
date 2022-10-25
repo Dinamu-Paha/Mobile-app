@@ -127,10 +127,6 @@ class _SecondScreenState extends State<SecondScreen> {
     }else _buttonDisabled=true;
   }
 
-  onSubmit(){
-
-  }
-
   //Timeout popup
   Future<void> openDialog() async {
     return showDialog<void>(
@@ -508,9 +504,12 @@ class _ThirdScreenState extends State<ThirdScreen> {
 
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(
+                        Navigator.pop(
                             context,
-                            MaterialPageRoute(builder: (BuildContext context) => Quiz_Games(),));
+                            );
+                        Navigator.pop(
+                          context,
+                        );
                       },
                       child: Container(
                         width: 80,
