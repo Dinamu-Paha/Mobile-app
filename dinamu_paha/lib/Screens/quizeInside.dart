@@ -15,7 +15,7 @@ class QuizeInside extends StatefulWidget {
 }
 
 class _QuizeInsideState extends State<QuizeInside> {
-  String _quizeName = 'sampleQuize';
+  String _quizeName = '';
 
   //for timer
   late Timer _timer;
@@ -46,7 +46,7 @@ class _QuizeInsideState extends State<QuizeInside> {
 
   Future <List<dynamic>> getQuestions()async {
     final res = await http.get(
-        Uri.parse('http://192.168.43.90:8080/question/getquestionsofquiz/'+widget.quizName.toString())
+        Uri.parse('http://192.168.1.102:8080/question/getquestionsofquiz/'+widget.quizName.toString())
         // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
@@ -57,7 +57,6 @@ class _QuizeInsideState extends State<QuizeInside> {
     }
 
     activateButton();
-
     return responsejson;
   }
 
@@ -74,9 +73,6 @@ class _QuizeInsideState extends State<QuizeInside> {
     }else _buttonDisabled=true;
   }
 
-  onSubmit(){
-
-  }
 
   //Timeout popup
   Future<void> openDialog() async {
@@ -212,12 +208,68 @@ class _QuizeInsideState extends State<QuizeInside> {
     );
   }
 
+  //submit popup
+  Future<void> SubmitPopup(int _finalMarks ) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(backgroundColor: Colors.red.shade50,
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Container(
+            height: 120,
+            child: Column(
+              children: [
+                Container(
+                    height: 80,
+                    child: Center(
+                      child: Text(("You got : "+ _finalMarks.toString()+" Marks"), style: TextStyle(color: Colors.red, fontSize: 22,),),
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (BuildContext context) => Quiz_Games(),));
+                      },
+                      child: Container(
+                        width: 80,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: AppColor.btnColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text(
+                              "ok",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
 
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       startTimer();
+      _quizeName= widget.quizName;
     });
   }
 
@@ -265,7 +317,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 15,),
-                              Text(snapshot.data?[index]["prescription"] ?? "", style: TextStyle(fontFamily: 'poppins', fontSize: 22),),
+                              Text("0"+ (index+1).toString() +") "+snapshot.data?[index]["prescription"] ?? "", style: TextStyle(fontFamily: 'poppins', fontSize: 22),),
                               Text(snapshot.data?[index]["postcription"] ?? "", style: TextStyle(fontFamily: 'poppins', fontSize: 22),),
 
                               SizedBox(height: 10,),
@@ -337,6 +389,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                   SizedBox(width: 120,),
                   ElevatedButton(
                       onPressed: _buttonDisabled?(){
+
                         print(_globalIndex);
                         print(_selectAnswerList[0]);
                         print(_dbAnswers[0]);
@@ -348,6 +401,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                           }
                         }
                         _finalMarks=(_noOfCorrectAnswers / _globalIndex*100).round();
+                        SubmitPopup(_finalMarks);
                         print(_noOfCorrectAnswers);
                         print(_finalMarks);
                         print("Elevated Button One pressed");

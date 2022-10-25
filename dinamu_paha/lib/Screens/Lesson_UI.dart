@@ -75,7 +75,7 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: SfPdfViewer.network('http://192.168.43.90:8080/get/image/'+widget.sub_id.toString()+widget.sub_topic_id.toString()+'.pdf'),
+        child: SfPdfViewer.network('http://192.168.1.102:8080/get/image/'+widget.sub_id.toString()+widget.sub_topic_id.toString()+'.pdf'),
     );
   }
 }
@@ -97,7 +97,7 @@ class _SecondScreenState extends State<SecondScreen> {
 
   Future <List<dynamic>> getQuestions()async {
     final res = await http.get(
-        Uri.parse('http://192.168.43.90:8080/question/getquestion'+widget.sub_id.toString()+'/'+widget.sub_topic_id.toString())
+        Uri.parse('http://192.168.1.102:8080/question/getquestion'+widget.sub_id.toString()+'/'+widget.sub_topic_id.toString())
       // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
@@ -175,6 +175,60 @@ class _SecondScreenState extends State<SecondScreen> {
                           )),
                     ),
                   ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+  //popup
+  Future<void> SubmitPopup(int _finalMarks ) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(backgroundColor: Colors.red.shade50,
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Container(
+            height: 120,
+            child: Column(
+              children: [
+                Container(
+                    height: 80,
+                    child: Center(
+                      child: Text(("You got : "+ _finalMarks.toString()+" Marks"), style: TextStyle(color: Colors.red, fontSize: 22,),),
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (BuildContext context) => Quiz_Games(),));
+                      },
+                      child: Container(
+                        width: 80,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: AppColor.btnColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text(
+                              "ok",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -369,6 +423,7 @@ class _SecondScreenState extends State<SecondScreen> {
                           }
                         }
                         _finalMarks=(_noOfCorrectAnswers / _globalIndex*100).round();
+                        SubmitPopup(_finalMarks);
                         print(_noOfCorrectAnswers);
                         print(_finalMarks);
                         print("Elevated Button One pressed");
@@ -550,6 +605,61 @@ class _ThirdScreenState extends State<ThirdScreen> {
     return responsejson;
   }
 
+  //popup
+  Future<void> SubmitPopup(int _finalMarks ) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(backgroundColor: Colors.red.shade50,
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Container(
+            height: 120,
+            child: Column(
+              children: [
+                Container(
+                    height: 80,
+                    child: Center(
+                      child: Text(("You got : "+ _finalMarks.toString()+" Marks"), style: TextStyle(color: Colors.red, fontSize: 22,),),
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (BuildContext context) => Quiz_Games(),));
+                      },
+                      child: Container(
+                        width: 80,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: AppColor.btnColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text(
+                              "ok",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   // get correct marks
   int _globalIndex = 0;
   bool _buttonDisabled = false;
@@ -807,6 +917,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                           }
                         }
                         _finalMarks=(_noOfCorrectAnswers / _globalIndex*100).round();
+                        SubmitPopup(_finalMarks);
                         print(_noOfCorrectAnswers);
                         print(_finalMarks);
                         print("Elevated Button One pressed");
