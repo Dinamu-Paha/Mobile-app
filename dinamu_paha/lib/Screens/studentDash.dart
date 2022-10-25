@@ -1,4 +1,5 @@
 import 'package:dinamu_paha/Component/colors.dart';
+import 'package:dinamu_paha/Screens/Past_Papers.dart';
 import 'package:dinamu_paha/Screens/signIn.dart';
 import 'package:dinamu_paha/Screens/studentProfile.dart';
 import 'package:dinamu_paha/Screens/subject_UI.dart';
@@ -111,56 +112,12 @@ class _StudentDashPageState extends State<StudentDashPage> {
                     ),
                     SizedBox(height: 10,),
 
-                    // GestureDetector(
-                    //   onTap: (){
-                    //
-                    //   },
-                    //   child: Container(
-                    //       height: 45,
-                    //       width: 240,
-                    //       decoration: BoxDecoration(
-                    //         border: Border.all(width: 2.0, color: const Color(0xFFFFFFFF)),
-                    //         borderRadius: BorderRadius.circular(10)
-                    //       ),
-                    //       child: Row(
-                    //         children: [
-                    //           SizedBox(width: 10,),
-                    //           Icon(Icons.newspaper,color: Colors.white,),
-                    //           SizedBox(width: 20,),
-                    //           Text("Learning Materials", style: TextStyle(
-                    //               fontSize: 21, color: Colors.white, fontWeight: FontWeight.w500),),
-                    //         ],
-                    //       )
-                    //   ),
-                    // ),
-                    // SizedBox(height: 10,),
-                    //
-                    // GestureDetector(
-                    //   onTap: (){
-                    //
-                    //   },
-                    //   child: Container(
-                    //       height: 45,
-                    //       width: 240,
-                    //       decoration: BoxDecoration(
-                    //           border: Border.all(width: 2.0, color: const Color(0xFFFFFFFF)),
-                    //           borderRadius: BorderRadius.circular(10)
-                    //       ),
-                    //       child: Row(
-                    //         children: [
-                    //           SizedBox(width: 10,),
-                    //           Icon(Icons.newspaper,color: Colors.white,),
-                    //           SizedBox(width: 20,),
-                    //           Text("Question Review", style: TextStyle(
-                    //               fontSize: 21, color: Colors.white, fontWeight: FontWeight.w500),),
-                    //         ],
-                    //       )
-                    //   ),
-                    // ),
-                    // SizedBox(height: 10,),
                     GestureDetector(
                       onTap: (){
-
+                        Navigator.push(
+                            context, MaterialPageRoute(
+                          builder: (BuildContext context) => Past_papers(),
+                        ));
                       },
                       child: Container(
                           height: 45,
@@ -184,8 +141,7 @@ class _StudentDashPageState extends State<StudentDashPage> {
                     GestureDetector(
                       onTap: (){
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
+                            context, MaterialPageRoute(
                               builder: (BuildContext context) => SignInPage(),
                             ));
                       },
