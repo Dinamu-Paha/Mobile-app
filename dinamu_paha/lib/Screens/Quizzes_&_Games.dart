@@ -70,7 +70,7 @@ class _QuizState extends State<Quiz> {
 
   //getQuizeNames
   Future <List<dynamic>> getQuizzers()async {
-    final res = await http.get(Uri.parse('http://192.168.1.102:8080/question/getquizzes')
+    final res = await http.get(Uri.parse('http://ec2-54-215-42-250.us-west-1.compute.amazonaws.com:8080/question/getquizzes')
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
     return responsejson;

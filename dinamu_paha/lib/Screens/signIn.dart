@@ -70,7 +70,7 @@ class _SignInPageState extends State<SignInPage> {
   //login request
   Future save() async {
     final res = await http.post(
-        Uri.parse('http://192.168.1.102:8080/user/login'),
+        Uri.parse('http://ec2-54-215-42-250.us-west-1.compute.amazonaws.com:8080/user/login'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'email': email, 'password': password})
 
