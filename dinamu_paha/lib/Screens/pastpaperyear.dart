@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../Component/colors.dart';
+import 'Past_Papers.dart';
 import 'Quizzes_&_Games.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,7 +20,7 @@ class _PPyearState extends State<PPyear> {
 
   //for timer
   late Timer _timer;
-  int _start = 1000;
+  int _start = 3000;
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -46,7 +47,7 @@ class _PPyearState extends State<PPyear> {
 
   Future <List<dynamic>> getQuestions()async {
     final res = await http.get(
-        Uri.parse('http://192.168.43.90:8080/question/getpastpaperofyear/'+widget.year.toString())
+        Uri.parse('http://192.168.1.102:8080/question/getpastpaperofyear/'+widget.year.toString())
       // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
@@ -186,7 +187,7 @@ class _PPyearState extends State<PPyear> {
                       onTap: (){
                         Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (BuildContext context) => Quiz_Games(),));
+                            MaterialPageRoute(builder: (BuildContext context) => Past_papers(),));
                       },
                       child: Container(
                         width: 80,
@@ -198,6 +199,59 @@ class _PPyearState extends State<PPyear> {
                         child: Center(
                             child: Text(
                               "Yes",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  //submit popup
+  Future<void> SubmitPopup(int _finalMarks ) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(backgroundColor: Colors.red.shade50,
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Container(
+            height: 120,
+            child: Column(
+              children: [
+                Container(
+                    height: 80,
+                    child: Center(
+                      child: Text(("You got : "+ _finalMarks.toString()+" Marks"), style: TextStyle(color: Colors.red, fontSize: 22,),),
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Past_papers(),));
+                      },
+                      child: Container(
+                        width: 80,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: AppColor.btnColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text(
+                              "ok",
                               style: TextStyle(color: Colors.white),
                             )),
                       ),
@@ -349,6 +403,7 @@ class _PPyearState extends State<PPyear> {
                           }
                         }
                         _finalMarks=(_noOfCorrectAnswers / _globalIndex*100).round();
+                        SubmitPopup(_finalMarks);
                         print(_noOfCorrectAnswers);
                         print(_finalMarks);
                         print("Elevated Button One pressed");

@@ -70,7 +70,7 @@ class _SignInPageState extends State<SignInPage> {
   //login request
   Future save() async {
     final res = await http.post(
-        Uri.parse('http://192.168.56.1:8080/user/login'),
+        Uri.parse('http://192.168.1.102:8080/user/login'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'email': email, 'password': password})
 
@@ -103,6 +103,7 @@ class _SignInPageState extends State<SignInPage> {
   LoginValidator(bool x) {
     print(check);
     if (x == true) {
+      print(checkRole);
       UserSelect(checkRole!);
     }
     else if (x == false) {

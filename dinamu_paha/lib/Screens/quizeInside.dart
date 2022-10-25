@@ -19,7 +19,7 @@ class _QuizeInsideState extends State<QuizeInside> {
 
   //for timer
   late Timer _timer;
-  int _start = 1000;
+  int _start = 3000;
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);

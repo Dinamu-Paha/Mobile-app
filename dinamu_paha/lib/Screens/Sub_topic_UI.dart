@@ -56,7 +56,7 @@ class _SubTopic_UIState extends State<SubTopic_UI> {
 
     print('object');
     final res = await http.get(
-        Uri.parse("http://192.168.43.90:8080/subject/getsubtopic/"+sub_id.toString())
+        Uri.parse("http://192.168.1.102:8080/subject/getsubtopic/"+sub_id.toString())
       // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));
