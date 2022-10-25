@@ -183,6 +183,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(builder: (BuildContext context) => Quiz_Games(),));
+                        deactivate();
                       },
                       child: Container(
                         width: 80,
@@ -238,6 +239,7 @@ class _QuizeInsideState extends State<QuizeInside> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(builder: (BuildContext context) => Quiz_Games(),));
+                        deactivate();
                       },
                       child: Container(
                         width: 80,
@@ -402,9 +404,9 @@ class _QuizeInsideState extends State<QuizeInside> {
                         }
                         _finalMarks=(_noOfCorrectAnswers / _globalIndex*100).round();
                         SubmitPopup(_finalMarks);
-                        print(_noOfCorrectAnswers);
-                        print(_finalMarks);
-                        print("Elevated Button One pressed");
+                        // print(_noOfCorrectAnswers);
+                        // print(_finalMarks);
+                        // print("Elevated Button One pressed");
                         _noOfCorrectAnswers=0;
                         _finalMarks =0;
                       }:null,

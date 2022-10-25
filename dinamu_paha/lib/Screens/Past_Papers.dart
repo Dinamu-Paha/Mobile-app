@@ -34,6 +34,15 @@ class _Past_papersState extends State<Past_papers> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: GestureDetector(
+            child: Icon(Icons.arrow_back),
+            onTap: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) => Subject_UI(),));
+              deactivate();
+            },
+          ),
           backgroundColor: Colors.deepPurple,
           title: Text('දිනමු පහ - Past Papers',),
         ),
@@ -109,29 +118,7 @@ class _Past_papersState extends State<Past_papers> {
 
         },
         ),
-        // GridView.count(
-        //   crossAxisCount: 3,
-        //   children: List.generate(30, (index) => Card(
-        //     elevation: 10,
-        //     margin: EdgeInsets.all(10),
-        //     shape: RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.circular(20),
-        //     ),
-        //     color: Colors.tealAccent.withOpacity(0.5),
-        //     child: Container(
-        //         child: Column(
-        //           crossAxisAlignment: CrossAxisAlignment.center,
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           children: [
-        //             Image.asset('assets/images/img_5.png', width: 40, height: 40,),
-        //             Text("Qiuz And Games",style: TextStyle(),),
-        //             Text("$index"),
-        //           ],
-        //         )
-        //     ),
-        //   ),
-        //   ),
-        // ),
+
         ),
       ),
     );
