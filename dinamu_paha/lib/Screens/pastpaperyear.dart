@@ -15,7 +15,7 @@ class PPyear extends StatefulWidget {
 }
 
 class _PPyearState extends State<PPyear> {
-  String _quizeName = 'sampleQuize';
+  String _quizeName = '';
 
   //for timer
   late Timer _timer;
@@ -217,6 +217,7 @@ class _PPyearState extends State<PPyear> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _quizeName = widget.year;
       startTimer();
     });
   }
