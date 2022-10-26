@@ -99,7 +99,7 @@ class _SecondScreenState extends State<SecondScreen> {
 
   Future <List<dynamic>> getQuestions()async {
     final res = await http.get(
-        Uri.parse('http://ec2-54-215-42-250.us-west-1.compute.amazonaws.com:8080/question/getquestion'+widget.sub_id.toString()+'/'+widget.sub_topic_id.toString())
+        Uri.parse('http://ec2-54-215-42-250.us-west-1.compute.amazonaws.com:8080/question/getquestion/'+widget.sub_id.toString()+'/'+widget.sub_topic_id.toString())
       // headers: {'Content-Type': 'application/json'}
     );
     List<dynamic> responsejson = json.decode(utf8.decode(res.bodyBytes));

@@ -118,7 +118,7 @@ class _QuizState extends State<Quiz> {
                                     child: Center(
                                       child: DefaultTextStyle(
                                         style: const TextStyle(
-                                            fontSize: 40,
+                                            fontSize: 25,
                                             fontFamily: 'poppins',
                                             fontStyle: FontStyle.italic,
                                             fontWeight: FontWeight.bold,
